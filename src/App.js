@@ -11,13 +11,16 @@ import { queryClient } from './utils/graphql/apiEndpoints'
 const App = () => {
   const [previewText, setPreviewText] = useState('')
   const [activeColor, setActiveColor] = useState('#000000')
+  const [activeFont, setActiveFont] = useState('')
   return (
     <QueryClientProvider client={queryClient}>
         <RootContext.Provider value={{
           previewText,
           setPreviewText,
           activeColor,
-          setActiveColor
+          setActiveColor,
+          activeFont,
+          setActiveFont
         }}>
         <div className={styles.rootContainer}>
           <Configurator />

@@ -17,7 +17,7 @@ const colors = [
 
 const ColorSelector = () => {
 	function useColors() {
-		return useQuery("fonts", async () => {
+		return useQuery("colors", async () => {
 			const { neoncolors } = await request(
 				apiRoot,
 				gql`

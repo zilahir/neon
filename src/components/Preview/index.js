@@ -6,8 +6,7 @@ import demoBg from '../../assets/temp/1.jpg'
 import styles from './Preview.module.scss'
 
 const Previewtext = styled.p`
-  text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px, rgb(255, 144, 255) 0px 0px 20px, rgb(255, 144, 255) 0px 0px 30px, rgb(255, 144, 255) 0px 0px 40px, rgb(255, 144, 255) 0px 0px 55px, rgb(255, 144, 255) 0px 0px 75px;
-  color: ${props => props.color};
+  text-shadow: ${props => props.textShadow};
 `
 
 const Preview = () => {
@@ -15,10 +14,20 @@ const Preview = () => {
   const [currentImage, setCurrentImage] = useState(images[0])
   const { previewText, activeColor } = useContext(rootContext)
 
+  const createTextShadow = color => (
+    `rgb(255, 255, 255) 0px 0px 5px,
+    ${color} 0px 0px 10px,
+    ${color} 0px 0px 20px,
+    ${color} 0px 0px 30px,
+    ${color} 0px 0px 40px,
+    ${color} 0px 0px 55px,
+    ${color} 0px 0px 75px;`
+  )
+
   return (
     <div className={styles.previewModuleContainer}>
       <div className={styles.preview}>
-        <Previewtext color={activeColor}>
+        <Previewtext textShadow={createTextShadow(activeColor)}>
           {previewText}
         </Previewtext>
         <img src={currentImage} alt="previewimage" />

@@ -1,0 +1,15 @@
+.fontSelectorContainer {
+	padding: 20px 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+
+	.fontSelectorBtn {
+		box-shadow: none;
+		background: none;
+		padding: 8px 12px;
+		border: 2px solid #444;
+		margin: 5px;
+	}
+}

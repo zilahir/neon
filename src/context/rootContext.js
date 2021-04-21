@@ -5,4 +5,6 @@ export default createContext({
 	setText: () => {},
 	activeColor: '#000000',
 	setActiveColor: () => {},
+	activeFont: '',
+	setActiveFont: () => {},
 })

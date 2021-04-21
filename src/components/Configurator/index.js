@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import styles from './Configurator.module.scss'
 import rootContext from '../../context/rootContext'
 import ColorSelector from './components/ColorSelector'
+import FontSelector from './components/FontSelector'
 
 const Configurator = () => {
   const { previewText, setPreviewText } = useContext(rootContext)
@@ -16,6 +17,7 @@ const Configurator = () => {
         value={previewText}
       />
       <ColorSelector />
+      <FontSelector />
     </div>
   )
 }
