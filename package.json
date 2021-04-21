@@ -30,6 +30,7 @@
     "axios": "^0.21.1",
     "css-loader": "^5.2.4",
     "file-loader": "^6.2.0",
+    "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "hex-to-rgba": "^2.0.1",
     "node-sass": "^5.0.0",
