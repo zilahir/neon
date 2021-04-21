@@ -1,16 +1,11 @@
 import React, { useContext, useState } from 'react'
-import WbIncandescentIcon from '@material-ui/icons/WbIncandescent'
 
 import styles from './Configurator.module.scss'
 import rootContext from '../../context/rootContext'
-
-const colors = [
-  '#ff90ff',
-  '#a5492a'
-]
+import ColorSelector from './components/ColorSelector'
 
 const Configurator = () => {
-  const { previewText, setPreviewText, setActiveColor } = useContext(rootContext)
+  const { previewText, setPreviewText } = useContext(rootContext)
   return ( 
     <div className={styles.configuratorRootContainer}>
       <input
@@ -20,15 +15,7 @@ const Configurator = () => {
         className={styles.textInput}
         value={previewText}
       />
-      <div className={styles.colorContainer}>
-        {
-          colors.map(color => (
-            <span key={color} onClick={() => setActiveColor(color)}>
-              <WbIncandescentIcon htmlColor={color} />
-            </span>
-          ))
-        }
-      </div>
+      <ColorSelector />
     </div>
   )
 }

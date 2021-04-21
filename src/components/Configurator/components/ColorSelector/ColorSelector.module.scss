@@ -1,0 +1,6 @@
+.colorContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+	padding: 20px 0;
+	gap: 10px;
+}
