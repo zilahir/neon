@@ -40,9 +40,12 @@ const ColorSelector = () => {
 		<div className={styles.colorContainer}>
 			{
 				data && data.map(({ name, color }) => (
-					<span key={name} onClick={() => setActiveColor(color.hex)}>
+					<button className={styles.colorSelectorBtn} type="button" key={name} onClick={() => setActiveColor(color.hex)}>
 						<WbIncandescentIcon fontSize="large" htmlColor={color.hex} />
-					</span>
+						<span>
+							{name}
+						</span>
+					</button>
 				))
 			}
 	</div>

@@ -36,16 +36,16 @@ const FontSelector = () => {
 
   const { activeFont, setActiveFont } = useContext(RootContext)
   const { status, data, error, isFetching } = useFonts();
-
-  console.debug('data', data)
   
   return (
     <div className={styles.fontSelectorContainer}>
       {
         data && data.map(({ id, name, fontType, asset }) => (
-          <button key={id} className={styles.fontSelectorBtn} type="button">
-            {name}
-          </button>
+          <React.Fragment key={id}>
+            <button className={styles.fontSelectorBtn} type="button">
+              {name}
+            </button>
+          </React.Fragment>
         ))
       }
     </div>

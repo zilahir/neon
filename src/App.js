@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { QueryClientProvider } from 'react-query'
 
 import Configurator from './components/Configurator'
+import CustomFontsProvider from './components/Configurator/components/FontSelector/utils/fonts'
 import Preview from './components/Preview'
 import RootContext from './context/rootContext'
 
@@ -13,21 +14,25 @@ const App = () => {
   const [activeColor, setActiveColor] = useState('#000000')
   const [activeFont, setActiveFont] = useState('')
   return (
-    <QueryClientProvider client={queryClient}>
-        <RootContext.Provider value={{
-          previewText,
-          setPreviewText,
-          activeColor,
-          setActiveColor,
-          activeFont,
-          setActiveFont
-        }}>
-        <div className={styles.rootContainer}>
-          <Configurator />
-          <Preview />
-        </div>
-      </RootContext.Provider>
-    </QueryClientProvider>
+    <React.Fragment>
+      <QueryClientProvider client={queryClient}>
+        <CustomFontsProvider>
+            <RootContext.Provider value={{
+              previewText,
+              setPreviewText,
+              activeColor,
+              setActiveColor,
+              activeFont,
+              setActiveFont
+            }}>
+              <div className={styles.rootContainer}>
+                  <Configurator />
+                  <Preview />
+              </div>
+            </RootContext.Provider>
+          </CustomFontsProvider>
+      </QueryClientProvider>
+    </React.Fragment>
   )
 }
 
