@@ -1,0 +1,25 @@
+.previewModuleContainer {
+	display: flex;
+	flex-direction: column;
+
+	img {
+		max-width: 100%;
+	}
+
+	.imageContainer {
+		img {
+			max-width: 100px
+		}
+	}
+
+	.preview {
+		position: relative;
+		display: flex;
+		justify-content: center;
+
+		p {
+			position: absolute;
+			font-size: 80px;
+		}
+	}
+}
