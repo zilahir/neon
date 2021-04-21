@@ -7,12 +7,13 @@ import styles from './Preview.module.scss'
 
 const Previewtext = styled.p`
   text-shadow: ${props => props.textShadow};
+  font-family: ${props => props.fontFamily};
 `
 
 const Preview = () => {
   const images = [demoBg]
   const [currentImage, setCurrentImage] = useState(images[0])
-  const { previewText, activeColor } = useContext(rootContext)
+  const { previewText, activeColor, activeFont } = useContext(rootContext)
 
   const createTextShadow = color => (
     `rgb(255, 255, 255) 0px 0px 5px,
@@ -27,7 +28,10 @@ const Preview = () => {
   return (
     <div className={styles.previewModuleContainer}>
       <div className={styles.preview}>
-        <Previewtext textShadow={createTextShadow(activeColor)}>
+        <Previewtext
+          textShadow={createTextShadow(activeColor)}
+          fontFamily={activeFont}
+        >
           {previewText}
         </Previewtext>
         <img src={currentImage} alt="previewimage" />

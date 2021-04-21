@@ -42,7 +42,7 @@ const FontSelector = () => {
       {
         data && data.map(({ id, name, fontType, asset }) => (
           <React.Fragment key={id}>
-            <button className={styles.fontSelectorBtn} type="button">
+            <button onClick={() => setActiveFont(name)} className={styles.fontSelectorBtn} type="button">
               {name}
             </button>
           </React.Fragment>
