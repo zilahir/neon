@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Toggle from 'react-toggle'
+import "react-toggle/style.css"
 
 import rootContext from '../../context/rootContext'
 import demoBg from '../../assets/temp/1.jpg'
@@ -13,6 +15,7 @@ const Previewtext = styled.p`
 const Preview = () => {
   const images = [demoBg]
   const [currentImage, setCurrentImage] = useState(images[0])
+  const [isOn, toggleOn] = useState(true)
   const { previewText, activeColor, activeFont } = useContext(rootContext)
 
   const createTextShadow = color => (
@@ -28,8 +31,15 @@ const Preview = () => {
   return (
     <div className={styles.previewModuleContainer}>
       <div className={styles.preview}>
+        <div className={styles.toggleContainer}>
+          <Toggle
+            defaultChecked={isOn}
+            onChange={() => toggleOn(isOn => !isOn)}
+            icons={false}
+          />
+        </div>
         <Previewtext
-          textShadow={createTextShadow(activeColor)}
+          textShadow={isOn ? createTextShadow(activeColor) : false}
           fontFamily={activeFont}
         >
           {previewText}

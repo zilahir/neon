@@ -10,7 +10,7 @@ import styles from './styles/Global.module.scss'
 import { queryClient } from './utils/graphql/apiEndpoints'
 
 const App = () => {
-  const [previewText, setPreviewText] = useState('')
+  const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
   const [activeFont, setActiveFont] = useState('')
   return (
