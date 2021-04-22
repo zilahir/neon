@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import classnames from 'classnames'
 
 import {
   useQuery,
@@ -42,7 +43,14 @@ const FontSelector = () => {
       {
         data && data.map(({ id, name, fontType, asset }) => (
           <React.Fragment key={id}>
-            <button onClick={() => setActiveFont(name)} className={styles.fontSelectorBtn} type="button">
+            <button
+              onClick={() => setActiveFont(name)}
+              className={classnames(
+                styles.fontSelectorBtn,
+                name === activeFont ? styles.active : '',
+              )}
+              type="button"
+            >
               {name}
             </button>
           </React.Fragment>
