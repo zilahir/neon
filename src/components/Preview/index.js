@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import classnames from 'classnames'
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
 
@@ -35,7 +36,20 @@ const Preview = () => {
           <Toggle
             defaultChecked={isOn}
             onChange={() => toggleOn(isOn => !isOn)}
-            icons={false}
+            icons={{
+              checked: (
+                <label className={styles.toggleBn}>ON</label>
+              ),
+              unchecked: (
+                <label
+                  className={classnames(
+                    styles.toggleBn,
+                    styles.off,
+                  )}>
+                    OFF
+                </label>
+              )
+            }}
           />
         </div>
         <Previewtext

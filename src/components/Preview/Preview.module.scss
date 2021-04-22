@@ -6,6 +6,18 @@
 		position: absolute;
 		left: 0;
 		margin: 10px;
+
+		.toggleBn {
+			text-transform: uppercase;
+			font-size: 10px;
+			font-weight: 900;
+			position: relative;
+			top: 3px;
+
+			&.off {
+				left: -3px;
+			}
+		}
 	}
 
 	img {
