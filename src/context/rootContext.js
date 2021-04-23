@@ -7,4 +7,6 @@ export default createContext({
 	setActiveColor: () => {},
 	activeFont: '',
 	setActiveFont: () => {},
+	currentSize: 'sm',
+	setCurrentSize: () => {},
 })

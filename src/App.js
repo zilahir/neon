@@ -13,6 +13,7 @@ const App = () => {
   const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
   const [activeFont, setActiveFont] = useState('Bubble Letter')
+  const [currentSize, setCurrentSize] = useState('sm')
   return (
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
@@ -23,7 +24,9 @@ const App = () => {
               activeColor,
               setActiveColor,
               activeFont,
-              setActiveFont
+              setActiveFont,
+              currentSize,
+              setCurrentSize
             }}>
               <div className={styles.rootContainer}>
                   <Configurator />
