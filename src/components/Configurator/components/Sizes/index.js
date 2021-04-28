@@ -24,13 +24,12 @@ function useSizes() {
 				}
 			`
 		);
-		console.debug('sizes', sizes)
 		return sizes;
 	});
 }
 
 const Sizes = () => {
-	const { currentSize, setCurrentSize } = useContext(rootContext)
+	const { currentSize, setCurrentSize, price: calculatedPrice } = useContext(rootContext)
 	const { status, data, error, isFetching } = useSizes();
 	return (
 		<div className={styles.sizesContainer}>
@@ -38,10 +37,13 @@ const Sizes = () => {
 				data && data.map(({ size, price, description }) => (
 					<div
 						role="button"
-						onClick={() => setSize(size)}
+						onClick={() => setCurrentSize({
+							size,
+							price,
+						})}
 						className={classnames(
 							styles.sizeBtn,
-							currentSize === size ? styles.active : '',
+							currentSize.size === size ? styles.active : '',
 						)}
 					>
 						<div>
@@ -49,7 +51,9 @@ const Sizes = () => {
 						</div>
 						<div>
 								<p className={styles.price}>
-									{`${price}Ft`}
+									{
+										calculatedPrice.find(price => price.size === size).price
+									}
 								</p>
 								<p className={styles.desc}>
 									{description}

@@ -11,6 +11,14 @@
     border: 2px solid #000;
     overflow: hidden;
 
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      background: red;
+    }
+
     p {
       margin: 0;
     }

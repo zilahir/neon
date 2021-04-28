@@ -9,4 +9,6 @@ export default createContext({
 	setActiveFont: () => {},
 	currentSize: 'sm',
 	setCurrentSize: () => {},
+	price: 0,
+	setPrice: () => {}
 })
