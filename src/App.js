@@ -48,7 +48,9 @@ const App = () => {
   const { status, data: prices, error, isFetching } = useSizes();
   const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
-  const [activeFont, setActiveFont] = useState('Bubble Letter')
+  const [activeFont, setActiveFont] = useState({
+    name: 'Allan'
+  })
   const [currentSize, setCurrentSize] = useState({
     size: 's',
     price: INITIAL_PRICE

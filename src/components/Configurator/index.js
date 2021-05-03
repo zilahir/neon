@@ -5,6 +5,7 @@ import rootContext from '../../context/rootContext'
 import ColorSelector from './components/ColorSelector'
 import FontSelector from './components/FontSelector'
 import Sizes from './components/Sizes'
+import BoardSelector from '../BoardSelector'
 
 const Configurator = () => {
   const { previewText, setPreviewText } = useContext(rootContext)
@@ -20,6 +21,7 @@ const Configurator = () => {
       <ColorSelector />
       <FontSelector />
       <Sizes />
+      <BoardSelector />
     </div>
   )
 }

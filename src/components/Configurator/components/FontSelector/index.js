@@ -40,7 +40,7 @@ const FontSelector = () => {
   return (
     <div className={styles.fontSelectorContainer}>
       {
-        data && data.map(({ id, name, fontType, asset }) => (
+        data && data.length > 0 && data.map(({ id, name, fontType, asset }) => (
           <React.Fragment key={id}>
             <button
               onClick={() => setActiveFont({
