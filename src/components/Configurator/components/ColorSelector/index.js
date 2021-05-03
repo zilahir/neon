@@ -15,7 +15,9 @@ const colors = [
   '#a5492a'
 ]
 
-const ColorSelector = () => {
+const ColorSelector = () => {	
+	const { setActiveColor } = useContext(rootContext)
+  const { status, data, error, isFetching } = useColors();
 	function useColors() {
 		return useQuery("colors", async () => {
 			const { neoncolors } = await request(
@@ -29,12 +31,10 @@ const ColorSelector = () => {
 					}
 				`
 			);
+			setActiveColor(neoncolors[0].color.hex)
 			return neoncolors;
 		});
 	}
-	
-	const { setActiveColor } = useContext(rootContext)
-  const { status, data, error, isFetching } = useColors();
 
   return (
 		<div className={styles.colorContainer}>
