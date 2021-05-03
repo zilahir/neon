@@ -53,7 +53,7 @@ const FontSelector = () => {
               )}
               type="button"
             >
-              {name} {fontType}
+              {name} <span>({fontType})</span>
             </button>
           </React.Fragment>
         ))

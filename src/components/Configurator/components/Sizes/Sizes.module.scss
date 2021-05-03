@@ -10,13 +10,17 @@
     border-radius: 20px;
     border: 2px solid #000;
     overflow: hidden;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       cursor: pointer;
+      color: #fff;
+      background: rgba($color: #444, $alpha: 0.5);
     }
 
     &.active {
-      background: red;
+      background: #444;
+      color: #fff;
     }
 
     p {
