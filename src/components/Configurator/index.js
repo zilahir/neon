@@ -8,6 +8,7 @@ import Sizes from './components/Sizes'
 import BoardSelector from '../BoardSelector'
 import WaterProof from '../WaterProof'
 import Dimmer from '../Dimmer'
+import FinalPrice from '../FinalPrice'
 
 const Configurator = () => {
   const { previewText, setPreviewText } = useContext(rootContext)
@@ -26,6 +27,7 @@ const Configurator = () => {
       <BoardSelector />
       <WaterProof />
       <Dimmer />
+      <FinalPrice /> 
     </div>
   )
 }
