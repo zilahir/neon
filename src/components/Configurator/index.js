@@ -6,6 +6,7 @@ import ColorSelector from './components/ColorSelector'
 import FontSelector from './components/FontSelector'
 import Sizes from './components/Sizes'
 import BoardSelector from '../BoardSelector'
+import WaterProof from '../WaterProof'
 
 const Configurator = () => {
   const { previewText, setPreviewText } = useContext(rootContext)
@@ -22,6 +23,7 @@ const Configurator = () => {
       <FontSelector />
       <Sizes />
       <BoardSelector />
+      <WaterProof />
     </div>
   )
 }
