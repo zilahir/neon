@@ -40,6 +40,8 @@
 			position: absolute;
 			font-size: 80px;
 			transition: all 0.2s ease-in-out;
+			word-break: break-all;
+			text-align: center;
 		}
 	}
 }

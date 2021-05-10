@@ -9,9 +9,9 @@ import Configurator from './components/Configurator'
 import CustomFontsProvider from './components/Configurator/components/FontSelector/utils/fonts'
 import Preview from './components/Preview'
 import RootContext from './context/rootContext'
-
 import styles from './styles/Global.module.scss'
 import { queryClient } from './utils/graphql/apiEndpoints'
+import { boardOptions } from './components/BoardSelector'
 
 const INITIAL_PRICE = 36000
 const S_CHAR_PRICE = 9000
@@ -61,6 +61,7 @@ const App = () => {
   const { status, data: sizes, error, isFetching } = useSizes();
   const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
+  const [backBoard, setBackBoard] = useState(boardOptions[0].price)
 
   const [activeFont, setActiveFont] = useState({
     name: 'Allan',
@@ -84,14 +85,14 @@ const App = () => {
     const selectedFontType = activeFont.fontType
     if (Array.isArray(sizes) && sizes.length > 0) {
       const calculatedPrices = Object.keys(charPrices[selectedFontType]).map(priceType => ({
-        price: sizes.find(({ size }) => size === priceType).price + textLength * charPrices[selectedFontType][priceType],
+        price: sizes.find(({ size }) => size === priceType).price + (textLength * charPrices[selectedFontType][priceType] + backBoard),
         size: priceType
       }))
 
       setPrice(calculatedPrices)
     }
 
-  }, [activeFont, currentSize, previewText, sizes])
+  }, [activeFont, currentSize, previewText, sizes, backBoard])
   return (
     <React.Fragment>
         <CustomFontsProvider>
@@ -105,7 +106,9 @@ const App = () => {
               currentSize,
               setCurrentSize,
               price,
-              setPrice
+              setPrice,
+              setBackBoard,
+              backBoard,
             }}>
               <div className={styles.rootContainer}>
                   <Configurator />

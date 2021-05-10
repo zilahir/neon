@@ -9,6 +9,13 @@ import rootContext from '../../../../context/rootContext'
 import styles from './Sizes.module.scss'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
 
+const WIDTH = {
+	s: 9,
+	m: 11,
+	l: 14,
+	xl: 17
+}
+
 function useSizes() {
 	return useQuery("sizes", async () => {
 		const { sizes } = await request(
@@ -28,10 +35,14 @@ function useSizes() {
 }
 
 const Sizes = () => {
-	const { currentSize, setCurrentSize, price: calculatedPrice, activeFont } = useContext(rootContext)
+	const { currentSize, setCurrentSize, price: calculatedPrice, activeFont, previewText } = useContext(rootContext)
 	const { status, data, error, isFetching } = useSizes();
 
 	const filteredSizes = data && data.length > 0 && data.filter(({ size }) => activeFont.fontType === 'double' ? size !== 's' && size !== 'm' : size )
+
+	const calculateLength = (size, length) => (
+		size * length
+	)
 
 	return (
 		<div className={styles.sizesContainer}>
@@ -59,7 +70,14 @@ const Sizes = () => {
 									}
 								</p>
 								<p className={styles.desc}>
-									{description}
+									<span>
+										{
+											previewText.length > 0 && `szélesség ${calculateLength(WIDTH[size], previewText.length)} cm`
+										}
+									</span>
+									<span>
+										{description}
+									</span>
 								</p>
 						</div>
 					</div>

@@ -10,5 +10,7 @@ export default createContext({
 	currentSize: 'sm',
 	setCurrentSize: () => {},
 	price: 0,
-	setPrice: () => {}
+	setPrice: () => {},
+	backBoard: 0,
+	setBackBoard: () => {},
 })
