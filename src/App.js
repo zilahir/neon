@@ -20,6 +20,19 @@ const L_CHAR_PRICE = 13000
 const XL_CHAR_PRICE = 16000
 
 const charPrices = {
+  simple: {
+    s: S_CHAR_PRICE,
+    m: M_CHAR_PRICE,
+    l: L_CHAR_PRICE,
+    xl: XL_CHAR_PRICE,
+  },
+  double: {
+    l: 15700,
+    xl: 19500,
+  }
+}
+
+const charPrices__ = {
   s: S_CHAR_PRICE,
   m: M_CHAR_PRICE,
   l: L_CHAR_PRICE,
@@ -45,41 +58,42 @@ function useSizes() {
 }
 
 const App = () => {
-  const { status, data: prices, error, isFetching } = useSizes();
+  const { status, data: sizes, error, isFetching } = useSizes();
   const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
+
   const [activeFont, setActiveFont] = useState({
-    name: 'Allan'
+    name: 'Allan',
+    fontType: 'simple'
   })
   const [currentSize, setCurrentSize] = useState({
     size: 's',
     price: INITIAL_PRICE
   })
-  const [price, setPrice] = useState(Object.keys(charPrices).map(defaultPrice => ({
+
+  const [price, setPrice] = useState(Object.keys(charPrices['simple']).map(defaultPrice => ({
     price: 0,
     size: defaultPrice
   })))
 
-  useEffect(() => {
-    setPrice(Object.keys(charPrices).map(defaultPrice => ({
-      price: Array.isArray(prices) ? prices.find(price => price.size === defaultPrice).price : 0,
-      size: defaultPrice
-    })))
-  }, [prices])
 
 
   useEffect(() => {
     let totalPrice = currentSize.price
     const textLength = previewText.length
-    if (Array.isArray(prices) && prices.length > 0) {
-      const calculatedPrices = Object.keys(charPrices).map(priceType => ({
-        price: prices.find(price => price.size === priceType).price + textLength * charPrices[priceType],
+    const selectedFontType = activeFont.fontType
+    console.debug('selectedFontType', selectedFontType)
+    if (Array.isArray(sizes) && sizes.length > 0) {
+      const calculatedPrices = Object.keys(charPrices[selectedFontType]).map(priceType => ({
+        price: sizes.find(({ size }) => size === priceType).price + textLength * charPrices[selectedFontType][priceType],
         size: priceType
       }))
+
+      console.debug('calculatedPrices', calculatedPrices)
       setPrice(calculatedPrices)
     }
 
-  }, [activeFont, currentSize, previewText])
+  }, [activeFont, currentSize, previewText, sizes])
   return (
     <React.Fragment>
         <CustomFontsProvider>

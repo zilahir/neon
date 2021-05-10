@@ -29,12 +29,15 @@ function useSizes() {
 }
 
 const Sizes = () => {
-	const { currentSize, setCurrentSize, price: calculatedPrice } = useContext(rootContext)
+	const { currentSize, setCurrentSize, price: calculatedPrice, activeFont } = useContext(rootContext)
 	const { status, data, error, isFetching } = useSizes();
+
+	const filteredSizes = data && data.length > 0 && data.filter(({ size }) => activeFont.fontType === 'double' ? size !== 's' && size !== 'm' : size )
+
 	return (
 		<div className={styles.sizesContainer}>
 			{
-				data && data.map(({ size, price, description }) => (
+				data && filteredSizes.map(({ size, price, description }) => (
 					<div
 						role="button"
 						onClick={() => setCurrentSize({
@@ -52,7 +55,7 @@ const Sizes = () => {
 						<div>
 								<p className={styles.price}>
 									{
-										calculatedPrice.find(price => price.size === size).price
+										calculatedPrice.find(price => price.size === size) ? calculatedPrice.find(price => price.size === size).price : 0
 									}
 								</p>
 								<p className={styles.desc}>
