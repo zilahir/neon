@@ -5,11 +5,17 @@ import {
   useQueryClient,
 } from "react-query";
 import { request, gql } from "graphql-request";
+import styled from 'styled-components'
 
 import RootContext from '../../../../context/rootContext'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
 
 import styles from './FontSelector.module.scss'
+
+const StyledButton = styled.button`
+  font-family: ${props => `${props.family}`};
+`
+
 
 function useSizes() {
 	return useQuery("sizes", async () => {
@@ -73,16 +79,17 @@ const FontSelector = () => {
       {
         data && data.length > 0 && data.map(({ id, name, fontType, asset }) => (
           <React.Fragment key={id}>
-            <button
+            <StyledButton
               onClick={() => handleActiveFont({name, fontType}) }
               className={classnames(
                 styles.fontSelectorBtn,
                 name === activeFont.name ? styles.active : '',
               )}
               type="button"
+              family={name}
             >
               {name} <span>({fontType})</span>
-            </button>
+            </StyledButton>
           </React.Fragment>
         ))
       }

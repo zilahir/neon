@@ -10,11 +10,6 @@ import styles from './ColorSelector.module.scss'
 import rootContext from '../../../../context/rootContext'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints'
 
-const colors = [
-  '#ff90ff',
-  '#a5492a'
-]
-
 const ColorSelector = () => {	
 	const { setActiveColor } = useContext(rootContext)
   const { status, data, error, isFetching } = useColors();
