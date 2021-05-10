@@ -1,15 +1,22 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
+
 module.exports = {
 	devServer: {
 		writeToDisk: true,
 	},
-
 	entry: './src/index.js',
 	output: {
 			path: path.resolve('./dist/neon'),
 			filename: 'main.js'
 	},
-
+	plugins: [
+		new CopyPlugin({
+      patterns: [
+        { from: "./index.html", to: "." },
+      ],
+    }),
+	],
 	module: {
 			rules: [
 					{ test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
