@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import classnames from 'classnames'
 import {
   useQuery,
-  useQueryClient,
 } from "react-query";
 import { request, gql } from "graphql-request";
 
@@ -39,6 +38,7 @@ const Sizes = () => {
 			{
 				data && filteredSizes.map(({ size, price, description }) => (
 					<div
+						key={size}
 						role="button"
 						onClick={() => setCurrentSize({
 							size,

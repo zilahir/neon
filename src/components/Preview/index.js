@@ -7,6 +7,7 @@ import "react-toggle/style.css"
 import rootContext from '../../context/rootContext'
 import demoBg from '../../assets/temp/1.jpg'
 import styles from './Preview.module.scss'
+import BackgroundSelector from '../Configurator/components/BackgroundSelector'
 
 const Previewtext = styled.p`
   text-shadow: ${props => props.textShadow};
@@ -14,8 +15,7 @@ const Previewtext = styled.p`
 `
 
 const Preview = () => {
-  const images = [demoBg]
-  const [currentImage, setCurrentImage] = useState(images[0])
+  const [currentImage, setCurrentImage] = useState(demoBg)
   const [isOn, toggleOn] = useState(true)
   const { previewText, activeColor, activeFont } = useContext(rootContext)
 
@@ -61,11 +61,7 @@ const Preview = () => {
         <img src={currentImage} alt="previewimage" />
       </div>
       <div className={styles.imageContainer}>
-        {
-          images.map((image, key) => (
-            <img key={key} src={image} alt="image" />
-          ))
-        }
+            <BackgroundSelector setCurrentImage={setCurrentImage} />
       </div>
     </div>
   )

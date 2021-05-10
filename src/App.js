@@ -82,14 +82,12 @@ const App = () => {
     let totalPrice = currentSize.price
     const textLength = previewText.length
     const selectedFontType = activeFont.fontType
-    console.debug('selectedFontType', selectedFontType)
     if (Array.isArray(sizes) && sizes.length > 0) {
       const calculatedPrices = Object.keys(charPrices[selectedFontType]).map(priceType => ({
         price: sizes.find(({ size }) => size === priceType).price + textLength * charPrices[selectedFontType][priceType],
         size: priceType
       }))
 
-      console.debug('calculatedPrices', calculatedPrices)
       setPrice(calculatedPrices)
     }
 
