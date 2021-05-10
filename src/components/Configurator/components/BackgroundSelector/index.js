@@ -30,7 +30,6 @@ const BackgroundSelector = ({
 	setCurrentImage
 }) => {	
 	const { status, data: backgrounds, error, isFetching } = useBackgrounds();
-	console.debug('hello', backgrounds)
 	return (
 		 (Array.isArray(backgrounds) && backgrounds.length > 0) && (
 			<div className={styes.backgroundSelectorRoot}>
