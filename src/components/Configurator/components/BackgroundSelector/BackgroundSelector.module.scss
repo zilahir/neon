@@ -1,4 +1,18 @@
 .backgroundSelectorRoot {
   display: flex;
   flex-wrap: wrap;
+
+  img {
+    opacity: 0.5;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+
+  }
 }
