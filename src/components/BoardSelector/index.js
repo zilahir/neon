@@ -2,12 +2,7 @@ import React, { useContext, useState } from 'react'
 import Select from 'react-select'
 
 import RootContext from '../../context/rootContext'
-
 import styles from './BoardSelector.module.scss'
-import board1 from '../../assets/board/hello board-01.png'
-import board2 from '../../assets/board/hello board-02.png'
-import board3 from '../../assets/board/hello board-03.png'
-import board4 from '../../assets/board/hello board-04.png'
 
 export const boardOptions = [
   { value: 'Betű körül (ingyenes)', label: 'Betű körül (ingyenes)', price: 0 },
@@ -17,7 +12,7 @@ export const boardOptions = [
   { value: 'Plexi box (+25.000 Ft)', label: 'Plexi box (+25.000 Ft)', price: 25000 },
 ]
 
-const boardImages = [board1, board2, board3, board4]
+const boardImages = ['https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-01.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-02.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-03.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-04.png']
 
 const BoardSelector = () => {
   const { price, setPrice, setBackBoard } = useContext(RootContext)

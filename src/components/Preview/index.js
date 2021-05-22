@@ -5,7 +5,6 @@ import Toggle from 'react-toggle'
 import "react-toggle/style.css"
 
 import rootContext from '../../context/rootContext'
-import demoBg from '../../assets/temp/1.jpg'
 import styles from './Preview.module.scss'
 import BackgroundSelector from '../Configurator/components/BackgroundSelector'
 
@@ -15,7 +14,7 @@ const Previewtext = styled.p`
 `
 
 const Preview = () => {
-  const [currentImage, setCurrentImage] = useState(demoBg)
+  const [currentImage, setCurrentImage] = useState('https://dekorklub.hu/wp-content/uploads/2021/05/hatter.jpg')
   const [isOn, toggleOn] = useState(true)
   const { previewText, activeColor, activeFont } = useContext(rootContext)
 
@@ -54,7 +53,7 @@ const Preview = () => {
         </div>
         <Previewtext
           textShadow={isOn ? createTextShadow(activeColor) : false}
-          fontFamily={activeFont}
+          fontFamily={activeFont.name}
         >
           {previewText}
         </Previewtext>

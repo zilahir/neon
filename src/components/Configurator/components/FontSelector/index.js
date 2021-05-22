@@ -63,6 +63,7 @@ const FontSelector = () => {
   const { data: sizes } = useSizes();
 
   function handleActiveFont(selected) {
+    console.debug('seelected', selected)
     setActiveFont(selected)
 
     if (selected.fontType === 'double' && ( currentSize.size !== 'l' || currentSize.size !== 'xl' )) {
@@ -87,6 +88,7 @@ const FontSelector = () => {
               )}
               type="button"
               family={name}
+
             >
               {name} <span>({fontType})</span>
             </StyledButton>
