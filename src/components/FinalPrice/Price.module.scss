@@ -8,3 +8,25 @@
       font-size: 30px;
   }
 }
+
+.placeToBasketBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 15px 30px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    transition: 0.2s ease-in;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+      color: #000;
+      background: #fff;
+    }
+  }
+}
