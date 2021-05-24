@@ -1,10 +1,22 @@
+@import '../../../../styles/mixins/accordion';
+
 $button-width: 50px;
 
 .colorContainer {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+	display: flex;
+	flex-direction: column;
 	padding: 20px 0;
 	gap: 10px;
+	border: 2px solid #6ACEC9;
+	border-radius: 15px;
+	padding: 20px;
+	margin: 20px 0;
+	transition: all 0.2s ease-in;
+
+	&.closed {
+		transition: all 0.2s ease-in;
+		max-height: 30px;
+	}
 
 	.colorSelectorBtn {
 		background: none;
@@ -27,4 +39,26 @@ $button-width: 50px;
 			text-transform: capitalize;
 		}
 	}
+
+	.colorInnerContainer {
+		display: flex;
+		flex-wrap: wrap;
+		overflow: hidden;
+		transition: all 0.2s ease-in-out;
+	
+		&.hidden {
+			max-height: 0;
+			transition: all 0.2s ease-in-out;
+		}
+	
+		&.open {
+			max-height: 500px;
+			transition: all 0.2s ease-in-out;
+		}
+		
+	}
+}
+
+.header {
+	@include accordion();
 }
