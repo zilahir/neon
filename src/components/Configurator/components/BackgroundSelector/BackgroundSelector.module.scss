@@ -1,10 +1,14 @@
 .backgroundSelectorRoot {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: hidden;
+  overflow-x: auto;
+  gap: 20px;
 
   img {
     opacity: 0.5;
     transition: all 0.2s ease-in-out;
+    max-width: 100px;
     &:hover {
       cursor: pointer;
       opacity: 1;

@@ -60,7 +60,7 @@ const Preview = () => {
         <img src={currentImage} alt="previewimage" />
       </div>
       <div className={styles.imageContainer}>
-            <BackgroundSelector currentImage={currentImage} setCurrentImage={setCurrentImage} />
+          <BackgroundSelector currentImage={currentImage} setCurrentImage={setCurrentImage} />
       </div>
     </div>
   )
