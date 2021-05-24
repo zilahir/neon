@@ -21,7 +21,7 @@ const FinalPrice = () => {
       currentSize,
       activeColor,
       activeFont,
-      backBoard,
+      backBoard: backBoard.value,
     }).then(() => {
       window.location = 'https://dekorklub.hu/kosar'
     })

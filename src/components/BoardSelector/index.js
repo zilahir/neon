@@ -32,7 +32,7 @@ const BoardSelector = () => {
 
   function handleChange(chosen) {
     setSelectedBoard(chosen)
-    setBackBoard(chosen.price)
+    setBackBoard(chosen)
   }
   return (
     (

@@ -68,7 +68,7 @@ const App = () => {
   const { data: charPrices_ } = useCharPrices()
   const [previewText, setPreviewText] = useState('')
   const [activeColor, setActiveColor] = useState('#000000')
-  const [backBoard, setBackBoard] = useState(boardOptions[0].price)
+  const [backBoard, setBackBoard] = useState(boardOptions[0])
   const [charPrices, setChartPrices] = useState(INIT_CHAR_PRICE)
 
   useEffect(() => {
@@ -112,10 +112,11 @@ const App = () => {
     const selectedFontType = activeFont.fontType
     if (Array.isArray(sizes) && sizes.length > 0) {
       const calculatedPrices = Object.keys(charPrices[selectedFontType]).map(priceType => ({
-        price: sizes.find(({ size }) => size === priceType).price + (textLength * charPrices[selectedFontType][priceType] + backBoard),
+        price: sizes.find(({ size }) => size === priceType).price + (textLength * charPrices[selectedFontType][priceType] + backBoard.price),
         size: priceType
       }))
 
+      console.debug('backboard', backBoard)
       setPrice(calculatedPrices)
     }
 
