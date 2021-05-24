@@ -19,6 +19,13 @@ const M_CHAR_PRICE = 11000
 const L_CHAR_PRICE = 13000
 const XL_CHAR_PRICE = 16000
 
+const INIT_CHAR_PRICE = {
+  simple: {
+  },
+  double: {
+  }
+}
+
 function useCharPrices() {
   return useQuery("charPrices", async () => {
     const { charprices } = await request(
@@ -62,25 +69,25 @@ const App = () => {
   const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
   const [backBoard, setBackBoard] = useState(boardOptions[0].price)
+  const [charPrices, setChartPrices] = useState(INIT_CHAR_PRICE)
 
-  let charPrices = {
-    simple: {
-    },
-    double: {
-    }
-  }
+  useEffect(() => {
+    if (charPrices_) {
+      let charPricesTemp = INIT_CHAR_PRICE
+      const simple = charPrices_.filter(charPrice => charPrice.fontType === 'simple')
+      const double = charPrices_.filter(charPrice => charPrice.fontType === 'double')
+      for (const key of simple) {
+        charPricesTemp.simple[key.size] = key.price
+      }
+  
+      for (const key of double) {
+        charPricesTemp.double[key.size] = key.price
+      }
+      setChartPrices(charPricesTemp)
 
-  if (charPrices_) {
-    const simple = charPrices_.filter(charPrice => charPrice.fontType === 'simple')
-    const double = charPrices_.filter(charPrice => charPrice.fontType === 'double')
-    for (const key of simple) {
-      charPrices.simple[key.size] = key.price
     }
+  }, [charPrices_])
 
-    for (const key of double) {
-      charPrices.double[key.size] = key.price
-    }
-  }
 
   const [activeFont, setActiveFont] = useState({
     name: 'Allan',
@@ -111,7 +118,7 @@ const App = () => {
       setPrice(calculatedPrices)
     }
 
-  }, [activeFont, currentSize, previewText, sizes, backBoard])
+  }, [activeFont, currentSize, previewText, sizes, backBoard, charPrices])
   return (
     <React.Fragment>
         <CustomFontsProvider>
