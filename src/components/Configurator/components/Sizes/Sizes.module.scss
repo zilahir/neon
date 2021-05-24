@@ -1,27 +1,28 @@
 .sizesContainer {
   display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
 
   .sizeBtn {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px;
     border-radius: 20px;
     border: 2px solid #000;
     overflow: hidden;
     transition: all 0.2s ease-in-out;
     padding: 10px;
+    max-height: 40px;
+    border: 2px solid #9B51E0;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       cursor: pointer;
-      color: #fff;
-      background: rgba($color: #444, $alpha: 0.5);
+      border: 2px solid #6ACEC9;
     }
 
     &.active {
-      background: #444;
-      color: #fff;
+      border: 2px solid #6ACEC9;
     }
 
     p {
@@ -48,11 +49,12 @@
 
         p {
           &.price {
-            font-size: 30px;
+            font-size: 24px;
+            font-weight: 700;
           }
 
           &.desc {
-            font-size: 16px;
+            font-size: 12px;
 
             span {
               display: block;
