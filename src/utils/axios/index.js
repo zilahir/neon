@@ -2,17 +2,27 @@ import axios from "axios";
 
 const axiosInstance = axios.create()
 
-export const addCustomNeonToBasktet = newNeon => {
-  const data = new FormData();
-  data.append('action', 'new_custom_neon_product');
-  data.append('newNeon', JSON.stringify(newNeon))
-  const params = new URLSearchParams(data);
-
-  const ajaxUrl = window.ajaxUrl
-  if (ajaxUrl) {
-    axiosInstance.post(ajaxUrl, data).then(({ data }) => {
-      console.debug('result', data)
-    })
+export const addCustomNeonToBasktet = newNeon => new Promise((resolve, reject) => {
+  {
+    const data = new FormData();
+    data.append('action', 'new_custom_neon_product');
+    data.append('price', newNeon.price.price)
+    data.append('size', newNeon.price.size)
+    data.append('text', newNeon.previewText)
+    data.append('color', newNeon.activeColor)
+    data.append('font', newNeon.activeFont.name)
+    data.append('fontType', newNeon.activeFont.fontType)
+    data.append('backBoard', newNeon.backBoard)
+    const params = new URLSearchParams(data);
+  
+    const ajaxUrl = window.ajaxUrl
+    if (ajaxUrl) {
+      axiosInstance.post(ajaxUrl, data).then(({ data }) => {
+      }).then(() => {
+        resolve(true)
+      })
+    } else {
+      resolve(false)
+    }
   }
-
-}
+})

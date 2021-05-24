@@ -8,7 +8,7 @@ const FinalPrice = () => {
   const {
     price,
     currentSize,
-    text,
+    previewText,
     activeColor,
     activeFont,
     backBoard,
@@ -16,32 +16,36 @@ const FinalPrice = () => {
 
   function placeToBasket() {
     addCustomNeonToBasktet({
-      text,
-      price,
+      previewText,
+      price: price.find(p => p.size === currentSize.size),
       currentSize,
       activeColor,
       activeFont,
       backBoard,
+    }).then(() => {
+      window.location = 'https://dekorklub.hu/kosar'
     })
   }
   return (
-    <>
-      <div className={styles.priceContainer}>
-        <p>
-          Végösszeg
-        </p>
-        <p>
-          {
-            `${price.find(p => p.size === currentSize.size).price} Ft`
-          }
-        </p>
-      </div>
-      <div className={styles.placeToBasketBtnContainer}>
-        <button onClick={() => placeToBasket()} type="button">
-          Kosárba teszem
-        </button>
-      </div>
-    </>
+    price.length > 0 && (
+      <>
+        <div className={styles.priceContainer}>
+          <p>
+            Végösszeg
+          </p>
+          <p>
+            {
+              `${price.find(p => p.size === currentSize.size).price} Ft`
+            }
+          </p>
+        </div>
+        <div className={styles.placeToBasketBtnContainer}>
+          <button onClick={() => placeToBasket()} type="button">
+            Kosárba teszem
+          </button>
+        </div>
+      </>
+    )
   )
 }
 

@@ -10,7 +10,7 @@ import CustomFontsProvider from './components/Configurator/components/FontSelect
 import Preview from './components/Preview'
 import RootContext from './context/rootContext'
 import styles from './styles/Global.module.scss'
-import { queryClient } from './utils/graphql/apiEndpoints'
+import { apiRoot, queryClient } from './utils/graphql/apiEndpoints'
 import { boardOptions } from './components/BoardSelector'
 
 const INITIAL_PRICE = 36000
@@ -19,24 +19,23 @@ const M_CHAR_PRICE = 11000
 const L_CHAR_PRICE = 13000
 const XL_CHAR_PRICE = 16000
 
-const charPrices = {
-  simple: {
-    s: S_CHAR_PRICE,
-    m: M_CHAR_PRICE,
-    l: L_CHAR_PRICE,
-    xl: XL_CHAR_PRICE,
-  },
-  double: {
-    l: 15700,
-    xl: 19500,
-  }
-}
+function useCharPrices() {
+  return useQuery("charPrices", async () => {
+    const { charprices } = await request(
+      apiRoot,
+      gql`
+      query {
+        charprices {
+          size,
+          fontType
+          price
+          }
+        }
+      `
+    )
 
-const charPrices__ = {
-  s: S_CHAR_PRICE,
-  m: M_CHAR_PRICE,
-  l: L_CHAR_PRICE,
-  xl: XL_CHAR_PRICE,
+    return charprices
+  })
 }
 
 function useSizes() {
@@ -59,9 +58,29 @@ function useSizes() {
 
 const App = () => {
   const { status, data: sizes, error, isFetching } = useSizes();
+  const { data: charPrices_ } = useCharPrices()
   const [previewText, setPreviewText] = useState('hello')
   const [activeColor, setActiveColor] = useState('#000000')
   const [backBoard, setBackBoard] = useState(boardOptions[0].price)
+
+  let charPrices = {
+    simple: {
+    },
+    double: {
+    }
+  }
+
+  if (charPrices_) {
+    const simple = charPrices_.filter(charPrice => charPrice.fontType === 'simple')
+    const double = charPrices_.filter(charPrice => charPrice.fontType === 'double')
+    for (const key of simple) {
+      charPrices.simple[key.size] = key.price
+    }
+
+    for (const key of double) {
+      charPrices.double[key.size] = key.price
+    }
+  }
 
   const [activeFont, setActiveFont] = useState({
     name: 'Allan',

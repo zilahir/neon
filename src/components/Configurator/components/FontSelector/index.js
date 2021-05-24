@@ -63,9 +63,7 @@ const FontSelector = () => {
   const { data: sizes } = useSizes();
 
   function handleActiveFont(selected) {
-    console.debug('seelected', selected)
     setActiveFont(selected)
-
     if (selected.fontType === 'double' && ( currentSize.size !== 'l' || currentSize.size !== 'xl' )) {
       const lSize = sizes.find(({ size }) => size === 'l')
       setCurrentSize({
