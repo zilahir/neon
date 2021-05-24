@@ -41,7 +41,7 @@ const FinalPrice = () => {
         </div>
         <div className={styles.placeToBasketBtnContainer}>
           <button onClick={() => placeToBasket()} type="button">
-            Kosárba teszem
+            Kosárba
           </button>
         </div>
       </>

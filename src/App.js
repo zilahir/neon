@@ -66,7 +66,7 @@ function useSizes() {
 const App = () => {
   const { status, data: sizes, error, isFetching } = useSizes();
   const { data: charPrices_ } = useCharPrices()
-  const [previewText, setPreviewText] = useState('hello')
+  const [previewText, setPreviewText] = useState('')
   const [activeColor, setActiveColor] = useState('#000000')
   const [backBoard, setBackBoard] = useState(boardOptions[0].price)
   const [charPrices, setChartPrices] = useState(INIT_CHAR_PRICE)
@@ -84,6 +84,7 @@ const App = () => {
         charPricesTemp.double[key.size] = key.price
       }
       setChartPrices(charPricesTemp)
+      setPreviewText('hello')
 
     }
   }, [charPrices_])

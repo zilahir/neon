@@ -12,7 +12,10 @@
 .placeToBasketBtnContainer {
   display: flex;
   justify-content: flex-end;
+
   button {
+    flex: 1;
+    height: 50px;
     border: none;
     background: none;
     box-shadow: none;
