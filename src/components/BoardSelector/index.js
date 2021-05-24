@@ -14,6 +14,18 @@ export const boardOptions = [
 
 const boardImages = ['https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-01.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-02.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-03.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-04.png']
 
+const dropdownStyles = {
+  valueContainer: provided => ({
+    ...provided,
+    height: 60,
+  }),
+  control: provided => ({
+    ...provided,
+    borderRadius: 15,
+    border: '2px solid #C277F2',
+  })
+}
+
 const BoardSelector = () => {
   const { price, setPrice, setBackBoard } = useContext(RootContext)
   const [selectedBoard, setSelectedBoard] = useState(boardOptions[0])
@@ -31,10 +43,12 @@ const BoardSelector = () => {
           }
         </div>
         <Select
+          styles={dropdownStyles}
           defaultValue={boardOptions[0]}
           options={boardOptions}
           placeholder="Válassz..."
           onChange={selected => handleChange(selected)}
+          isSearchable={false}
         />
       </div>
     )

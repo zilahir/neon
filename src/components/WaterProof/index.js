@@ -8,6 +8,18 @@ const WATERPROOF_OPTIONS = [
   { value: 'waterproof', label: 'Vízálló (+12000 Ft)', price: 12000 }
 ]
 
+const dropdownStyles = {
+  valueContainer: provided => ({
+    ...provided,
+    height: 60,
+  }),
+  control: provided => ({
+    ...provided,
+    borderRadius: 15,
+    border: '2px solid #C277F2',
+  })
+}
+
 const WaterProof = () => {
   const { price, setPrice } = useContext(RootContext)
   const [selected, setSelected] = useState(WATERPROOF_OPTIONS[0])
@@ -34,6 +46,8 @@ const WaterProof = () => {
         options={WATERPROOF_OPTIONS}
         placeholder="Válassz..."
         onChange={selected => handleChange(selected)}
+        isSearchable={false}
+        styles={dropdownStyles}
       />
   )
 }

@@ -79,9 +79,8 @@ const FontSelector = () => {
   return (
     <div
       className={styles.fontSelectorContainer}
-      onClick={() => toggleOpen(curr => !curr)}
     >
-      <div className={styles.header}>
+      <div onClick={() => toggleOpen(curr => !curr)} className={styles.header}>
         <p>
           Betűtípus
         </p>
