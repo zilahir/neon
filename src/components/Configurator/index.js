@@ -21,8 +21,8 @@ const Configurator = () => {
         className={styles.textInput}
         value={previewText}
       />
-      <ColorSelector />
       <FontSelector />
+      <ColorSelector />
       <Sizes />
       <BoardSelector />
       <WaterProof />

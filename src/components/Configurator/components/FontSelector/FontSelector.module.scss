@@ -1,14 +1,21 @@
+@import '../../../../styles/mixins/accordion';
+
 .fontSelectorContainer {
 	padding: 20px 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: center;
+	flex-direction: column;
+	border: 2px solid #6ACEC9;
+	border-radius: 15px;
+	padding: 20px;
+	margin: 20px 0;
 
 	.fontSelectorBtn {
 		box-shadow: none;
 		background: none;
-		padding: 8px 12px;
+		padding: 8px 0px;
 		margin: 5px;
 		font-size: 16px;
 		transition: all 0.2s ease-in;
@@ -29,5 +36,24 @@
 			background: #444;
 			color: #fff;
 		}
+	}
+}
+
+.header {
+	@include accordion();
+}
+
+.fontsContainer {
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
+
+	&.hidden {
+		max-height: 0;
+		transition: all 0.2s ease-in-out;
+	}
+
+	&.open {
+		max-height: 500px;
+		transition: all 0.2s ease-in-out;
 	}
 }

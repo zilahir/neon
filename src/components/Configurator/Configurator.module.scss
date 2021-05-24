@@ -4,9 +4,15 @@
 	margin: 40px;
 
 	input {
-		height: 50px;
+		height: 60px;
 		width: calc(100% - 20px);
 		padding-left: 20px;
 		font-size: 18px;
+		border-radius: 15px;
+		border: 2px solid #C277F2;
+
+		&:focus {
+			outline: none;
+		}
 	}
 }

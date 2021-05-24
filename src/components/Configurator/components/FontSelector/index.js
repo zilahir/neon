@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import classnames from 'classnames'
 import {
   useQuery,
@@ -6,6 +6,8 @@ import {
 } from "react-query";
 import { request, gql } from "graphql-request";
 import styled from 'styled-components'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 import RootContext from '../../../../context/rootContext'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
@@ -60,6 +62,7 @@ const FontSelector = () => {
 
   const { activeFont, setActiveFont, currentSize, setCurrentSize } = useContext(RootContext)
   const { status, data, error, isFetching } = useFonts();
+  const [isOpen, toggleOpen] = useState(false)
   const { data: sizes } = useSizes();
 
   function handleActiveFont(selected) {
@@ -74,25 +77,43 @@ const FontSelector = () => {
   }
 
   return (
-    <div className={styles.fontSelectorContainer}>
-      {
-        data && data.length > 0 && data.map(({ id, name, fontType, asset }) => (
-          <React.Fragment key={id}>
-            <StyledButton
-              onClick={() => handleActiveFont({name, fontType}) }
-              className={classnames(
-                styles.fontSelectorBtn,
-                name === activeFont.name ? styles.active : '',
-              )}
-              type="button"
-              family={name}
+    <div
+      className={styles.fontSelectorContainer}
+      onClick={() => toggleOpen(curr => !curr)}
+    >
+      <div className={styles.header}>
+        <p>
+          Betűtípus
+        </p>
+        <div>
+          {
+            isOpen ? <ExpandLessIcon htmlColor="#000000" /> : <ExpandMoreIcon htmlColor="#000000" />
+          }
+        </div>
+      </div>
+      <div className={classnames(
+        styles.fontsContainer,
+        isOpen ? styles.open : styles.hidden
+      )}>
+        {
+          data && data.length > 0 && data.map(({ id, name, fontType, asset }) => (
+            <React.Fragment key={id}>
+              <StyledButton
+                onClick={() => handleActiveFont({name, fontType}) }
+                className={classnames(
+                  styles.fontSelectorBtn,
+                  name === activeFont.name ? styles.active : '',
+                )}
+                type="button"
+                family={name}
 
-            >
-              {name} <span>({fontType})</span>
-            </StyledButton>
-          </React.Fragment>
-        ))
-      }
+              >
+                {name} <span>({fontType})</span>
+              </StyledButton>
+            </React.Fragment>
+          ))
+        }
+      </div>
     </div>
   )
 }
