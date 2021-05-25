@@ -12,7 +12,6 @@
     overflow: hidden;
     transition: all 0.2s ease-in-out;
     padding: 10px;
-    max-height: 40px;
     border: 2px solid #9B51E0;
     transition: all 0.2s ease-in-out;
 
@@ -27,6 +26,7 @@
 
     p {
       margin: 0;
+      padding: 0;
     }
 
     div {
@@ -42,7 +42,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 10px 0;
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;

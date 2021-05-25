@@ -38,7 +38,7 @@ const ColorSelector = () => {
   return (
 		<div className={classnames(
 			styles.colorContainer,
-			!isOpen && styles.closed,
+			!isOpen ? styles.closed : styles.open,
 		)}>
 			<div onClick={() => toggleOpen(curr => !curr)} className={styles.header}>
 				<p>
