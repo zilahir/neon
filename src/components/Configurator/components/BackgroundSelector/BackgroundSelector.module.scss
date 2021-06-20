@@ -1,4 +1,7 @@
+@import "../../../../styles/mixins/scrollbar";
+
 .backgroundSelectorRoot {
+  @include scrollbars(.5em, #6ACEC9, rgba(0, 0, 0, 0.5));
   display: flex;
   flex-direction: row;
   overflow: hidden;

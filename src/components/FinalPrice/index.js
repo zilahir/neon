@@ -26,16 +26,20 @@ const FinalPrice = () => {
       window.location = 'https://dekorklub.hu/kosar'
     })
   }
+
+  
+  const formatSum = sum => sum ? `${Number.parseInt(sum).toLocaleString()} Ft` : '0 Ft'
+
   return (
     price.length > 0 && (
       <>
         <div className={styles.priceContainer}>
           <p>
-            Végösszeg
+            Végösszeg:
           </p>
           <p>
             {
-              `${price.find(p => p.size === currentSize.size).price} Ft`
+              formatSum(price.find(p => p.size === currentSize.size).price)
             }
           </p>
         </div>
