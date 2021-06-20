@@ -44,6 +44,8 @@ const Sizes = () => {
 		size * length
 	)
 
+	const formatSum = sum => `${Number.parseInt(sum).toLocaleString()} Ft`
+
 	return (
 		<div className={styles.sizesContainer}>
 			{
@@ -66,7 +68,7 @@ const Sizes = () => {
 						<div>
 								<p className={styles.price}>
 									{
-										calculatedPrice.find(price => price.size === size) ? calculatedPrice.find(price => price.size === size).price : 0
+										formatSum(calculatedPrice.find(price => price.size === size) ? calculatedPrice.find(price => price.size === size).price : 0)
 									}
 								</p>
 								<p className={styles.desc}>

@@ -3,9 +3,9 @@
 	flex-direction: column;
 	margin: 40px;
 
-	input {
+	textarea {
 		height: 60px;
-		width: calc(100% - 20px);
+		width: inherit;
 		padding-left: 20px;
 		font-size: 18px;
 		border-radius: 15px;

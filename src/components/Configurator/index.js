@@ -36,7 +36,7 @@ const Configurator = () => {
 
   return ( 
     <div className={styles.configuratorRootContainer}>
-      <input
+      <textarea
         type="text"
         placeholder="szöveg"
         onChange={e => setPreviewText(e.target.value)}
