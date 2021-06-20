@@ -94,8 +94,11 @@ const FontSelector = () => {
         styles.fontsContainer,
         isOpen ? styles.open : styles.hidden
       )}>
+        <div className={styles.divider}>
+          simple
+        </div>
         {
-          data && data.length > 0 && data.map(({ id, name, fontType, asset }) => (
+          data && data.length > 0 && data.filter(font => font.fontType === 'simple').map(({ id, name, fontType, asset }) => (
             <React.Fragment key={id}>
               <StyledButton
                 onClick={() => handleActiveFont({name, fontType}) }
@@ -107,7 +110,28 @@ const FontSelector = () => {
                 family={name}
 
               >
-                {name} <span>({fontType})</span>
+                {name}
+              </StyledButton>
+            </React.Fragment>
+          ))
+        }
+        <div className={styles.divider}>
+          double
+        </div>
+        {
+          data && data.length > 0 && data.filter(font => font.fontType === 'double').map(({ id, name, fontType, asset }) => (
+            <React.Fragment key={id}>
+              <StyledButton
+                onClick={() => handleActiveFont({name, fontType}) }
+                className={classnames(
+                  styles.fontSelectorBtn,
+                  name === activeFont.name ? styles.active : '',
+                )}
+                type="button"
+                family={name}
+
+              >
+                {name}
               </StyledButton>
             </React.Fragment>
           ))

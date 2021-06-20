@@ -12,7 +12,13 @@ export const boardOptions = [
   { value: 'Plexi box (+25.000 Ft)', label: 'Plexi box (+25.000 Ft)', price: 25000 },
 ]
 
-const boardImages = ['https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-01.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-02.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-03.png', 'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-04.png']
+const boardImages = [
+  'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-01.png',
+  'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-03.png',
+  'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-02.png',
+  'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-04.png',
+  'https://dekorklub.hu/wp-content/uploads/2021/05/hello-board-05.png'
+]
 
 const dropdownStyles = {
   valueContainer: provided => ({
@@ -29,17 +35,21 @@ const dropdownStyles = {
 const BoardSelector = () => {
   const { price, setPrice, setBackBoard } = useContext(RootContext)
   const [selectedBoard, setSelectedBoard] = useState(boardOptions[0])
+  const [boardImage, setBoardImage] = useState(boardImages[0])
 
   function handleChange(chosen) {
+    console.debug('chosen', chosen)
     setSelectedBoard(chosen)
     setBackBoard(chosen)
+    setBoardImage(boardImages[boardOptions.findIndex(board => board === chosen)])
   }
+
   return (
     (
       <div className={styles.boardSelectorContainer}>
         <div className={styles.imageContainer}>
           {
-            <img alt="board-preview" src={boardImages[boardOptions.findIndex(option => option === selectedBoard)]} />
+            <img alt="board-preview" src={boardImage} />
           }
         </div>
         <Select
