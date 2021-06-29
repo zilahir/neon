@@ -1,7 +1,15 @@
+@import '../../styles/mixins/mediaquries';
+
 .priceContainer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+
+  @include smMax {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 10px 0; 
+  }
 
     p {
       font-weight: 800;

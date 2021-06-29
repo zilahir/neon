@@ -1,7 +1,13 @@
+@import '../styles/mixins/mediaquries';
+
 .rootContainer {
 	display: grid;
 	max-width: 1100px;
 	margin: 0 auto;
 	grid-template-columns: repeat(auto-fit, minmax(350px, max-content));
 	column-gap: 20px;
+
+	@include smMax {
+		display: block;
+	}
 }
