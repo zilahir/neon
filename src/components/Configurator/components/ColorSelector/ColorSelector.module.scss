@@ -24,13 +24,14 @@ $button-width: 50px;
 	.colorSelectorBtn {
 		background: none;
 		border: none;
-		margin: 10px;
+		margin: 25px 15px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		width: $button-width;
 		height: $button-width;
 		padding: 0;
+		align-items: center;
 
 		&:focus {
 			outline: none;
@@ -48,6 +49,7 @@ $button-width: 50px;
 		flex-wrap: wrap;
 		overflow: hidden;
 		transition: all 0.2s ease-in-out;
+		justify-content: center;
 	
 		&.hidden {
 			max-height: 0;
