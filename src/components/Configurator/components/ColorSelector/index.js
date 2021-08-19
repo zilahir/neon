@@ -13,9 +13,11 @@ import styles from './ColorSelector.module.scss'
 import rootContext from '../../../../context/rootContext'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints'
 
-const ColorSelector = () => {	
+const ColorSelector = ({
+	isOpen,
+	toggleOpen
+}) => {	
 	const { setActiveColor } = useContext(rootContext);
-	const [isOpen, toggleOpen] = useState(false);
   const { status, data, error, isFetching } = useColors();
 	function useColors() {
 		return useQuery("colors", async () => {

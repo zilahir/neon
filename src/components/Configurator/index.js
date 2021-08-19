@@ -33,6 +33,23 @@ function useMarketingText() {
 const Configurator = () => {
   const { previewText, setPreviewText } = useContext(rootContext)
   const { data: marketingTexts } = useMarketingText();
+  const [isOpen, toggleOpen] = useState({
+    color: false,
+    font: false,
+  })
+
+
+function handleOpen(type) {
+  const newValue = isOpen[type]
+  let rest = Object.entries(isOpen).map(([key]) => ({
+    [key]: false
+  }))
+  rest = Object.assign({}, ...rest)
+  toggleOpen(() => ({
+    ...rest,
+    [type]: !newValue,
+  }))
+}
 
   return ( 
     <div className={styles.configuratorRootContainer}>
@@ -48,8 +65,8 @@ const Configurator = () => {
           <MarketingText text={marketingTexts[0].marketingtext} />
         )
       }
-      <FontSelector />
-      <ColorSelector />
+      <FontSelector isOpen={isOpen.font} toggleOpen={() => handleOpen('font')} />
+      <ColorSelector isOpen={isOpen.color} toggleOpen={() => handleOpen('color')}/>
       <Sizes />
       {
         marketingTexts && marketingTexts.length > 0 && (

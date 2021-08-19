@@ -18,7 +18,6 @@ const StyledButton = styled.button`
   font-family: ${props => `${props.family}`};
 `
 
-
 function useSizes() {
 	return useQuery("sizes", async () => {
 		const { sizes } = await request(
@@ -37,7 +36,10 @@ function useSizes() {
 	});
 }
 
-const FontSelector = () => {
+const FontSelector = ({
+  isOpen,
+  toggleOpen,
+}) => {
   function useFonts() {
     return useQuery("fonts", async () => {
 			const { fonts } = await request(
@@ -62,7 +64,6 @@ const FontSelector = () => {
 
   const { activeFont, setActiveFont, currentSize, setCurrentSize } = useContext(RootContext)
   const { status, data, error, isFetching } = useFonts();
-  const [isOpen, toggleOpen] = useState(false)
   const { data: sizes } = useSizes();
 
   function handleActiveFont(selected) {
