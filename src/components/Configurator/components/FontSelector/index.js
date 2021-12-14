@@ -11,6 +11,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 import RootContext from '../../../../context/rootContext'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
+import { t } from '../../../../utils/i18n'
 
 import styles from './FontSelector.module.scss'
 
@@ -83,7 +84,7 @@ const FontSelector = ({
     >
       <div onClick={() => toggleOpen(curr => !curr)} className={styles.header}>
         <p>
-          Betűtípus
+          {t('font.font')}
         </p>
         <div>
           {

@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { addCustomNeonToBasktet } from '../../utils/axios'
 import RootContext from '../../context/rootContext'
 import styles from './Price.module.scss'
+import { t } from '../../utils/i18n'
 
 const FinalPrice = () => {
   const {
@@ -35,7 +36,7 @@ const FinalPrice = () => {
       <>
         <div className={styles.priceContainer}>
           <p>
-            Végösszeg:
+            {t('meta.total')}
           </p>
           <p>
             {

@@ -1,0 +1,20 @@
+{
+    "demo": "Demo",
+    "font": {
+        "font": "Choose your font"
+    },
+    "color": {
+        "color": "Choose your color"
+    },
+    "meta": {
+        "width": "Width",
+        "height": "Height",
+        "cut-to-text": "Cut to text",
+        "rectangle": "Rectangle",
+        "cut-to-shape": "Cut to shape",
+        "acrylic-stand": "Acrylic stand",
+        "acrylic-box": "Acrylic box",
+        "total": "Total",
+        "add-to-card": "Add to card"
+    }
+}

@@ -9,9 +9,11 @@ import { request, gql } from "graphql-request";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
-import styles from './ColorSelector.module.scss'
 import rootContext from '../../../../context/rootContext'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints'
+import { t } from '../../../../utils/i18n'
+
+import styles from './ColorSelector.module.scss'
 
 const ColorSelector = ({
 	isOpen,
@@ -44,7 +46,7 @@ const ColorSelector = ({
 		)}>
 			<div onClick={() => toggleOpen(curr => !curr)} className={styles.header}>
 				<p>
-					Szín
+					{t('color.color')}
 				</p>
 				<div>
           {

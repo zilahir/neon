@@ -1,0 +1,20 @@
+{
+    "demo": "Demo",
+    "font": {
+        "font": "Betűtípus"
+    },
+    "color": {
+        "color": "Szín"
+    },
+    "meta": {
+        "width": "szélesség",
+        "height": "magasság",
+        "cut-to-text": "Betű körül",
+        "rectangle": "Téglalap alakú",
+        "cut-to-shape": "Felirat körül",
+        "acrylic-stand": "Álló kivitel",
+        "acrylic-box": "Plexi box",
+        "total": "Végösszeg",
+        "add-to-card": "Kosárba"
+    }
+}

@@ -8,6 +8,7 @@ import { request, gql } from "graphql-request";
 import rootContext from '../../../../context/rootContext'
 import styles from './Sizes.module.scss'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
+import { t } from '../../../../utils/i18n'
 
 const WIDTH = {
 	s: 9,
@@ -46,6 +47,8 @@ const Sizes = () => {
 
 	const formatSum = sum => `${Number.parseInt(sum).toLocaleString()} Ft`
 
+	const localizedText = (description) => description.replace('magasság', t('meta.height'))
+
 	return (
 		<div className={styles.sizesContainer}>
 			{
@@ -74,11 +77,11 @@ const Sizes = () => {
 								<p className={styles.desc}>
 									<span>
 										{
-											previewText.length > 0 && `szélesség ${calculateLength(WIDTH[size], previewText.length)} cm`
+											previewText.length > 0 && `${t('meta.width')} ${calculateLength(WIDTH[size], previewText.length)} cm`
 										}
 									</span>
 									<span>
-										{description}
+										{localizedText(description)}
 									</span>
 								</p>
 						</div>
