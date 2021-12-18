@@ -28,7 +28,6 @@ const BackgroundSelector = ({
 					  }
 				  `
 			  );
-			  console.log(backgrounds)
 			  setCurrentImage(backgrounds[0].background.url);
 			  return backgrounds;
 		  });

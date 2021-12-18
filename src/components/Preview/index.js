@@ -32,22 +32,19 @@ const Preview = () => {
   const ELEMENT_BLACKLIST = ['test-image', 'shadow-toggle', 'image-selector']
 
   function  generateImage() {
-    console.log('hello')
     const previewContainer = document.querySelector('#neon-preview')
     html2canvas(previewContainer, {
       logging: true,
       useCORS: true,
       ignoreElements: element => {
-        // console.log('element', element.id)
         if (ELEMENT_BLACKLIST.some(blacklist => blacklist === element.id)) {
-          console.log('ingoring')
           return true
         }
       }
     }).then(function(canvas) {
       document.body.appendChild(canvas);
       const base64Image = canvas.toDataURL("image/jpeg");
-      console.log(base64Image)
+      // console.log(base64Image)
   });
   }
 

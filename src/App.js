@@ -115,8 +115,6 @@ const App = () => {
         price: sizes.find(({ size }) => size === priceType).price + (textLength * charPrices[selectedFontType][priceType] + backBoard.price),
         size: priceType
       }))
-
-      console.debug('backboard', backBoard)
       setPrice(calculatedPrices)
     }
 
