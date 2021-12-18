@@ -8,29 +8,31 @@ import classnames from 'classnames'
 import styles from './BackgroundSelector.module.scss'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
 
-function useBackgrounds() {
-  return useQuery("backgrounds", async () => {
-		const { backgrounds } = await request(
-			apiRoot,
-			gql`
-				query {
-					backgrounds {
-						id
-						background {
-							url
-						}
-					}
-				}
-			`
-		);
-		return backgrounds;
-	});
-}
-
 const BackgroundSelector = ({
 	setCurrentImage,
 	currentImage
 }) => {	
+
+	function useBackgrounds() {
+		return useQuery("backgrounds", async () => {
+			  const { backgrounds } = await request(
+				  apiRoot,
+				  gql`
+					  query {
+						  backgrounds {
+							  id
+							  background {
+								  url
+							  }
+						  }
+					  }
+				  `
+			  );
+			  console.log(backgrounds)
+			  setCurrentImage(backgrounds[0].background.url);
+			  return backgrounds;
+		  });
+	  }
 	const { status, data: backgrounds, error, isFetching } = useBackgrounds();
 	return (
 		 (Array.isArray(backgrounds) && backgrounds.length > 0) && (

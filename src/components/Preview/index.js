@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import classnames from 'classnames'
 import Toggle from 'react-toggle'
-import "react-toggle/style.css"
+import html2canvas from 'html2canvas';
 
 import rootContext from '../../context/rootContext'
 import styles from './Preview.module.scss'
 import BackgroundSelector from '../Configurator/components/BackgroundSelector'
+import "react-toggle/style.css"
 
 const Previewtext = styled.p`
   text-shadow: ${props => props.textShadow};
@@ -14,7 +15,7 @@ const Previewtext = styled.p`
 `
 
 const Preview = () => {
-  const [currentImage, setCurrentImage] = useState('https://dekorklub.hu/wp-content/uploads/2021/05/hatter.jpg')
+  const [currentImage, setCurrentImage] = useState(false)
   const [isOn, toggleOn] = useState(true)
   const { previewText, activeColor, activeFont } = useContext(rootContext)
 
@@ -28,28 +29,58 @@ const Preview = () => {
     ${color} 0px 0px 75px;`
   )
 
+  const ELEMENT_BLACKLIST = ['test-image', 'shadow-toggle', 'image-selector']
+
+  function  generateImage() {
+    console.log('hello')
+    const previewContainer = document.querySelector('#neon-preview')
+    html2canvas(previewContainer, {
+      logging: true,
+      useCORS: true,
+      ignoreElements: element => {
+        // console.log('element', element.id)
+        if (ELEMENT_BLACKLIST.some(blacklist => blacklist === element.id)) {
+          console.log('ingoring')
+          return true
+        }
+      }
+    }).then(function(canvas) {
+      document.body.appendChild(canvas);
+      const base64Image = canvas.toDataURL("image/jpeg");
+      console.log(base64Image)
+  });
+  }
+
   return (
-    <div className={styles.previewModuleContainer}>
+    <div
+      className={styles.previewModuleContainer}
+      id="neon-preview"
+    >
       <div className={styles.preview}>
         <div className={styles.toggleContainer}>
-          <Toggle
-            defaultChecked={isOn}
-            onChange={() => toggleOn(isOn => !isOn)}
-            icons={{
-              checked: (
-                <label className={styles.toggleBn}>ON</label>
-              ),
-              unchecked: (
-                <label
-                  className={classnames(
-                    styles.toggleBn,
-                    styles.off,
-                  )}>
-                    OFF
-                </label>
-              )
-            }}
-          />
+          <button id="test-image" onClick={() => generateImage()} type="button">
+            test image
+          </button>
+          <div id="shadow-toggle">
+            <Toggle
+              defaultChecked={isOn}
+              onChange={() => toggleOn(isOn => !isOn)}
+              icons={{
+                checked: (
+                  <label className={styles.toggleBn}>ON</label>
+                ),
+                unchecked: (
+                  <label
+                    className={classnames(
+                      styles.toggleBn,
+                      styles.off,
+                    )}>
+                      OFF
+                  </label>
+                )
+              }}
+            />
+            </div>
         </div>
         <Previewtext
           textShadow={isOn ? createTextShadow(activeColor) : false}
@@ -59,7 +90,7 @@ const Preview = () => {
         </Previewtext>
         <img src={currentImage} alt="previewimage" />
       </div>
-      <div className={styles.imageContainer}>
+      <div id="image-selector" className={styles.imageContainer}>
           <BackgroundSelector currentImage={currentImage} setCurrentImage={setCurrentImage} />
       </div>
     </div>
