@@ -36,5 +36,17 @@
     "acrylic-box": {
         "extraPrice": "25000",
         "valueText": "Plexi box"
+    },
+    "waterproof": {
+        "indoor": {
+            "labelText": "Indoor",
+            "valueText": "indoor",
+            "extraPrice": "ingyenes"
+        },
+        "waterproof": {
+            "labelText": "Vízálló",
+            "valueText": "waterproof",
+            "extraPrice": "12000"
+        }
     }
 }

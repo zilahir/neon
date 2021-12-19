@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react'
 import Select from 'react-select'
 
+import { t } from '../../utils/i18n'
 import RootContext from '../../context/rootContext'
 
 const WATERPROOF_OPTIONS = [
-  { value: 'indoor', label: 'Indoor (ingyenes)', price: 0 },
-  { value: 'waterproof', label: 'Vízálló (+12000 Ft)', price: 12000 }
+  { value: t('waterproof.indoor.valueText'), label: `${t('waterproof.indoor.labelText')} (${t('waterproof.indoor.extraPrice')})`, price: 0 },
+  { value: t('waterproof.waterproof.valueText'), label: `${t('waterproof.waterproof.labelText')} (+${t('waterproof.waterproof.extraPrice')})`, price: `${Number.parseInt(t('waterproof.waterproof.extraPrice'))} Ft` }
 ]
 
 const dropdownStyles = {
