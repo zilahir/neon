@@ -1,16 +1,24 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Select from 'react-select'
 
-import { t } from '../../utils/i18n'
+import { getLanguage } from '../../utils/i18n'
 import RootContext from '../../context/rootContext'
 import styles from './BoardSelector.module.scss'
 
 export const boardOptions = [
-  { value: `${t('cut-to-text.valueText')} (${t('cut-to-text.extraPrice')})`, label: `${t('cut-to-text.valueText')} (${t('cut-to-text.extraPrice')})`, price: 0 },
-  { value: `${t('rectangle.valueText')} (${t('rectangle.extraPrice')})`, label: `${t('rectangle.valueText')} (${t('rectangle.extraPrice')})`, price: 0 },
-  { value: `${t('cut-to-shape.valueText')} (+${t('cut-to-shape.extraPrice')})`, label: `${t('cut-to-shape.valueText')} (+${t('cut-to-shape.extraPrice')} Ft)`, price: Number.parseInt(t('cut-to-shape.extraPrice'), 10) },
-  { value: `${t('acrylic-stand.valueText')} (+${t('acrylic-stand.extraPrice')} Ft)`, label: `${t('acrylic-stand.valueText')} (+${t('acrylic-stand.extraPrice')} Ft)`, price: Number.parseInt(t('acrylic-stand.extraPrice'), 10) },
-  { value: `${t('acrylic-box.valueText')} (+${t('acrylic-box.extraPrice')} Ft)`, label: `${t('acrylic-box.valueText')} (+${t('acrylic-box.extraPrice')} Ft)`, price: Number.parseInt(t('acrylic-box.extraPrice'), 10) },
+  { value: 'Betű körül (ingyenes)', label: 'Betű körül (ingyenes)', price: 0 },
+  { value: 'Téglalap alakú (ingyenes)', label: 'Téglalap alakú (ingyenes)', price: 0 },
+  { value: 'Felirat körül közvetlenül (+13.000 Ft)', label: 'Felirat körül közvetlenül (+13.000 Ft)', price: 13000 },
+  { value: 'Álló kivitel (+15.000 Ft)', label: 'Álló kivitel (+15.000 Ft)', price: 15000 },
+  { value: 'Plexi box (+25.000 Ft)', label: 'Plexi box (+25.000 Ft)', price: 25000 },
+]
+
+const boardOptionsEn = [
+  { value: 'Cut to text (free)', label: 'Cut to text (free)', price: 0 },
+  { value: 'Rectangle (free)', label: 'Rectangle (free)', price: 0 },
+  { value: 'Cut to shape (+13.000 Ft)', label: 'Cut to shape (+13.000 Ft)', price: 13000 },
+  { value: 'Acrylic stand (+15.000 Ft)', label: 'Acrylic stand (+15.000 Ft)', price: 15000 },
+  { value: 'Acrylic box (+25.000 Ft)', label: 'Acrylic box (+25.000 Ft)', price: 25000 },
 ]
 
 const boardImages = [
@@ -35,15 +43,24 @@ const dropdownStyles = {
 
 const BoardSelector = () => {
   const { price, setPrice, setBackBoard } = useContext(RootContext)
-  const [selectedBoard, setSelectedBoard] = useState(boardOptions[0])
+  const currentLanguage = getLanguage()
+  const BOARD_OPTIONS = {
+    en: boardOptionsEn,
+    hu: boardOptions
+  }
+
+  const [selectedBoard, setSelectedBoard] = useState(BOARD_OPTIONS[currentLanguage][0])
   const [boardImage, setBoardImage] = useState(boardImages[0])
 
   function handleChange(chosen) {
-    console.debug('chosen', chosen)
     setSelectedBoard(chosen)
     setBackBoard(chosen)
     setBoardImage(boardImages[boardOptions.findIndex(board => board === chosen)])
   }
+
+  useEffect(() => {
+    setSelectedBoard(BOARD_OPTIONS[currentLanguage][0])
+  }, [currentLanguage])
 
   return (
     (
@@ -55,8 +72,8 @@ const BoardSelector = () => {
         </div>
         <Select
           styles={dropdownStyles}
-          defaultValue={boardOptions[0]}
-          options={boardOptions}
+          value={selectedBoard}
+          options={BOARD_OPTIONS[currentLanguage]}
           placeholder="Válassz..."
           onChange={selected => handleChange(selected)}
           isSearchable={false}

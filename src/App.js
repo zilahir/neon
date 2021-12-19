@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
   useQuery,
-  useQueryClient,
 } from "react-query";
 import { request, gql } from "graphql-request";
 
@@ -10,7 +9,7 @@ import CustomFontsProvider from './components/Configurator/components/FontSelect
 import Preview from './components/Preview'
 import RootContext from './context/rootContext'
 import styles from './styles/Global.module.scss'
-import { apiRoot, queryClient } from './utils/graphql/apiEndpoints'
+import { apiRoot } from './utils/graphql/apiEndpoints'
 import { boardOptions } from './components/BoardSelector'
 import { setLanguage } from './utils/i18n';
 
@@ -107,20 +106,17 @@ const App = () => {
 
   useEffect(() => {
     const searchString = window.location.search
-    console.log(searchString)
     const languageRegexp = new RegExp(/.*=(.*)/)
     const languageMatch = searchString.match(languageRegexp)
     if (Array.isArray(languageMatch)) {
       const language = languageMatch[1]
       if (language === 'en') {
         setLanguage('en')
-        console.log('current language is en')
       }
     } else {
-      console.log('current language is hu')
       setLanguage('hu')
     }
-  }, [window.location])
+  }, [window.location, window.location.search])
 
   useEffect(() => {
     const textLength = previewText.length

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getLanguage } from "../i18n";
 
 const axiosInstance = axios.create()
 
@@ -13,8 +14,8 @@ export const addCustomNeonToBasktet = newNeon => new Promise((resolve, reject) =
     data.append('font', newNeon.activeFont.name)
     data.append('fontType', newNeon.activeFont.fontType)
     data.append('backBoard', newNeon.backBoard)
-    const params = new URLSearchParams(data);
-  
+    data.append('language', getLanguage())
+
     const ajaxUrl = window.ajaxUrl
     if (ajaxUrl) {
       axiosInstance.post(ajaxUrl, data).then(({ data }) => {

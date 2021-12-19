@@ -1,9 +1,19 @@
 import React, { useState, useContext } from 'react'
 import Select from 'react-select'
 
-import { t, getLanguage } from '../../utils/i18n'
+import { getLanguage } from '../../utils/i18n'
 import RootContext from '../../context/rootContext'
+import { useEffect } from 'react'
 
+const WATERPROOF_OPTIONS = [
+  { value: 'indoor', label: 'Indoor (ingyenes)', price: 0 },
+  { value: 'waterproof', label: 'Vízálló (+12000 Ft)', price: 12000 }
+]
+
+const WATERPROOF_OPTIONS_EN = [
+  { value: 'indoor', label: 'Indoor (free)', price: 0 },
+  { value: 'waterproof', label: 'Waterproof (+12000 Ft)', price: 12000 }
+]
 const dropdownStyles = {
   valueContainer: provided => ({
     ...provided,
@@ -17,14 +27,18 @@ const dropdownStyles = {
 }
 
 const WaterProof = () => {
-
-  const WATERPROOF_OPTIONS = [
-    { value: t('waterproof.indoor.valueText'), label: `${t('waterproof.indoor.labelText')} (${t('waterproof.indoor.extraPrice')})`, price: 0 },
-    { value: t('waterproof.waterproof.valueText'), label: `${t('waterproof.waterproof.labelText')} (+${t('waterproof.waterproof.extraPrice')})`, price: `${Number.parseInt(t('waterproof.waterproof.extraPrice'))} Ft` }
-  ]
-
+  const options = {
+    hu: WATERPROOF_OPTIONS,
+    en: WATERPROOF_OPTIONS_EN
+  }
+  
   const { price, setPrice } = useContext(RootContext)
-  const [selected, setSelected] = useState(WATERPROOF_OPTIONS[0])
+  const currentLanguage = getLanguage()
+  const [selected, setSelected] = useState()
+
+  useEffect(() => {
+    setSelected(options[currentLanguage][0])
+  }, [currentLanguage])
 
   function handleChange(chosen) {
     setSelected(chosen)
@@ -44,8 +58,9 @@ const WaterProof = () => {
   }
   return (
     <Select
-        defaultValue={WATERPROOF_OPTIONS[0]}
-        options={WATERPROOF_OPTIONS}
+        value={selected}
+        //defaultValue={options[currentLanguage][0]}
+        options={options[currentLanguage]}
         placeholder="Válassz..."
         onChange={selected => handleChange(selected)}
         isSearchable={false}

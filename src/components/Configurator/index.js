@@ -29,7 +29,6 @@ function useMarketingText() {
         }
       `
     )
-    console.log('marketingTexts', marketingtexts)
     return marketingtexts
   })
 }

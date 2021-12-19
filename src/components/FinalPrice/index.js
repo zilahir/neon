@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { addCustomNeonToBasktet } from '../../utils/axios'
 import RootContext from '../../context/rootContext'
 import styles from './Price.module.scss'
-import { t } from '../../utils/i18n'
+import { t, getLanguage } from '../../utils/i18n'
 
 const FinalPrice = () => {
   const {
@@ -24,11 +24,15 @@ const FinalPrice = () => {
       activeFont,
       backBoard: backBoard.value,
     }).then(() => {
-      window.location = 'https://dekorklub.hu/kosar'
+      const currentLanguage = getLanguage()
+      if (currentLanguage === 'hu') {
+        window.location = 'https://dekorklub.hu/kosar'
+      } else {
+        window.location = 'https://dekorklub.hu/cart/?lang=en'
+      }
     })
   }
 
-  
   const formatSum = sum => sum ? `${Number.parseInt(sum).toLocaleString()} Ft` : '0 Ft'
 
   return (
