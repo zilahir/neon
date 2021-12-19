@@ -12,6 +12,7 @@ import RootContext from './context/rootContext'
 import styles from './styles/Global.module.scss'
 import { apiRoot, queryClient } from './utils/graphql/apiEndpoints'
 import { boardOptions } from './components/BoardSelector'
+import { setLanguage } from './utils/i18n';
 
 const INITIAL_PRICE = 36000
 const S_CHAR_PRICE = 9000
@@ -104,10 +105,24 @@ const App = () => {
     size: defaultPrice
   })))
 
-
+  useEffect(() => {
+    const searchString = window.location.search
+    console.log(searchString)
+    const languageRegexp = new RegExp(/.*=(.*)/)
+    const languageMatch = searchString.match(languageRegexp)
+    if (Array.isArray(languageMatch)) {
+      const language = languageMatch[1]
+      if (language === 'en') {
+        setLanguage('en')
+        console.log('current language is en')
+      }
+    } else {
+      console.log('current language is hu')
+      setLanguage('hu')
+    }
+  }, [window.location])
 
   useEffect(() => {
-    let totalPrice = currentSize.price
     const textLength = previewText.length
     const selectedFontType = activeFont.fontType
     if (Array.isArray(sizes) && sizes.length > 0) {
@@ -117,7 +132,6 @@ const App = () => {
       }))
       setPrice(calculatedPrices)
     }
-
   }, [activeFont, currentSize, previewText, sizes, backBoard, charPrices])
   return (
     <React.Fragment>

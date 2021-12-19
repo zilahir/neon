@@ -13,6 +13,7 @@ import { useQuery } from 'react-query'
 import { request, gql } from "graphql-request";
 import { apiRoot } from '../../utils/graphql/apiEndpoints'
 import MarketingText from '../common/MarketingText'
+import { getLanguage } from '../../utils/i18n'
 
 function useMarketingText() {
   return useQuery("marketingTexts", async () => {
@@ -22,10 +23,13 @@ function useMarketingText() {
         query {
           marketingtexts {
             marketingtext
+            languageKey
+            key
           }
         }
       `
     )
+    console.log('marketingTexts', marketingtexts)
     return marketingtexts
   })
 }
@@ -51,6 +55,10 @@ function handleOpen(type) {
   }))
 }
 
+function getMarketingText(key) {
+  return marketingTexts.find(text => text.key === key && text.languageKey === getLanguage())
+}
+
   return ( 
     <div className={styles.configuratorRootContainer}>
       <textarea
@@ -62,7 +70,7 @@ function handleOpen(type) {
       />
       {
         marketingTexts && marketingTexts.length > 0 && (
-          <MarketingText text={marketingTexts[0].marketingtext} />
+          <MarketingText text={getMarketingText('CONTACT').marketingtext} />
         )
       }
       <FontSelector isOpen={isOpen.font} toggleOpen={() => handleOpen('font')} />
@@ -70,7 +78,7 @@ function handleOpen(type) {
       <Sizes />
       {
         marketingTexts && marketingTexts.length > 0 && (
-          <MarketingText text={marketingTexts[1].marketingtext} />
+          <MarketingText text={getMarketingText('HEIGHT').marketingtext} />
         )
       }
       <BoardSelector />
