@@ -76,7 +76,7 @@ export function t(path, replacement) {
 		findPartsForData(currentLanguage.data, parts) ||
 		findPartsForData(fallbackLanguage.data, parts)
 	if (translation === undefined) {
-		throw new Error(`Can't find translation for ${path}`)
+		throw new Error(`Can't find translation for ${path}, for language: ${getLanguage()}`)
 	}
 	if (replacement) {
 		for (const key in replacement) {

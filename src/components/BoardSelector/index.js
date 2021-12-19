@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react'
 import Select from 'react-select'
 
+import { t } from '../../utils/i18n'
 import RootContext from '../../context/rootContext'
 import styles from './BoardSelector.module.scss'
 
 export const boardOptions = [
-  { value: 'Betű körül (ingyenes)', label: 'Betű körül (ingyenes)', price: 0 },
-  { value: 'Téglalap alakú (ingyenes)', label: 'Téglalap alakú (ingyenes)', price: 0 },
-  { value: 'Felirat körül közvetlenül (+13.000 Ft)', label: 'Felirat körül közvetlenül (+13.000 Ft)', price: 13000 },
-  { value: 'Álló kivitel (+15.000 Ft)', label: 'Álló kivitel (+15.000 Ft)', price: 15000 },
-  { value: 'Plexi box (+25.000 Ft)', label: 'Plexi box (+25.000 Ft)', price: 25000 },
+  { value: `${t('cut-to-text.valueText')} (${t('cut-to-text.extraPrice')})`, label: `${t('cut-to-text.valueText')} (${t('cut-to-text.extraPrice')})`, price: 0 },
+  { value: `${t('rectangle.valueText')} (${t('rectangle.extraPrice')})`, label: `${t('rectangle.valueText')} (${t('rectangle.extraPrice')})`, price: 0 },
+  { value: `${t('cut-to-shape.valueText')} (+${t('cut-to-shape.extraPrice')})`, label: `${t('cut-to-shape.valueText')} (+${t('cut-to-shape.extraPrice')} Ft)`, price: Number.parseInt(t('cut-to-shape.extraPrice'), 10) },
+  { value: `${t('acrylic-stand.valueText')} (+${t('acrylic-stand.extraPrice')} Ft)`, label: `${t('acrylic-stand.valueText')} (+${t('acrylic-stand.extraPrice')} Ft)`, price: Number.parseInt(t('acrylic-stand.extraPrice'), 10) },
+  { value: `${t('acrylic-box.valueText')} (+${t('acrylic-box.extraPrice')} Ft)`, label: `${t('acrylic-box.valueText')} (+${t('acrylic-box.extraPrice')} Ft)`, price: Number.parseInt(t('acrylic-box.extraPrice'), 10) },
 ]
 
 const boardImages = [

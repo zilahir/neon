@@ -46,7 +46,7 @@ const FinalPrice = () => {
         </div>
         <div className={styles.placeToBasketBtnContainer}>
           <button onClick={() => placeToBasket()} type="button">
-            Kosárba
+            {t('meta.add-to-cart')}
           </button>
         </div>
       </>

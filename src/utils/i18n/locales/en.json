@@ -15,6 +15,27 @@
         "acrylic-stand": "Acrylic stand",
         "acrylic-box": "Acrylic box",
         "total": "Total",
-        "add-to-card": "Add to card"
+        "add-to-cart": "Add to card",
+        "free": "free"
+    },
+    "cut-to-text": {
+        "extraPrice": "free",
+        "valueText": "Cut to text"
+    },
+    "rectangle": {
+        "extraPrice": "free",
+        "valueText": "Rectangle"
+    },
+    "cut-to-shape": {
+        "extraPrice": "13000",
+        "valueText": "Cot to shape"
+    },
+    "acrylic-stand": {
+        "extraPrice": "15000",
+        "valueText": "Acrylic stand"
+    },
+    "acrylic-box": {
+        "extraPrice": "25000",
+        "valueText": "Acrylic box"
     }
 }

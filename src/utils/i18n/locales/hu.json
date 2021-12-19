@@ -9,12 +9,32 @@
     "meta": {
         "width": "szélesség",
         "height": "magasság",
-        "cut-to-text": "Betű körül",
         "rectangle": "Téglalap alakú",
         "cut-to-shape": "Felirat körül",
         "acrylic-stand": "Álló kivitel",
         "acrylic-box": "Plexi box",
         "total": "Végösszeg",
-        "add-to-card": "Kosárba"
+        "add-to-cart": "Kosárba",
+        "free": "kaka"
+    },
+    "cut-to-text": {
+        "extraPrice": "ingyenes",
+        "valueText": "Betű körül"
+    },
+    "rectangle": {
+        "extraPrice": "ingyenes",
+        "valueText": "Téglalap alakú"
+    },
+    "cut-to-shape": {
+        "extraPrice": "13000",
+        "valueText": "Feirat körül közvetlenül"
+    },
+    "acrylic-stand": {
+        "extraPrice": "15000",
+        "valueText": "Álló kivitel"
+    },
+    "acrylic-box": {
+        "extraPrice": "25000",
+        "valueText": "Plexi box"
     }
 }
