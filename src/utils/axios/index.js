@@ -15,6 +15,9 @@ export const addCustomNeonToBasktet = newNeon => new Promise((resolve, reject) =
     data.append('fontType', newNeon.activeFont.fontType)
     data.append('backBoard', newNeon.backBoard)
     data.append('language', getLanguage())
+    data.append('productImage', newNeon.productImage)
+
+    console.log('newNeon', newNeon.productImage)
 
     const ajaxUrl = window.ajaxUrl
     if (ajaxUrl) {

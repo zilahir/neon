@@ -104,6 +104,8 @@ const App = () => {
     size: defaultPrice
   })))
 
+  const [base64Image, setBase64Image] = useState(undefined)
+
   useEffect(() => {
     const searchString = window.location.search
     const languageRegexp = new RegExp(/.*=(.*)/)
@@ -145,6 +147,8 @@ const App = () => {
               setPrice,
               setBackBoard,
               backBoard,
+              base64Image,
+              setBase64Image
             }}>
               <div className={styles.rootContainer}>
                   <Configurator />

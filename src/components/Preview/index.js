@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import classnames from 'classnames'
-import Toggle from 'react-toggle'
-import html2canvas from 'html2canvas';
+import Toggle /*  */from 'react-toggle'
 
 import rootContext from '../../context/rootContext'
 import styles from './Preview.module.scss'
@@ -29,35 +28,12 @@ const Preview = () => {
     ${color} 0px 0px 75px;`
   )
 
-  const ELEMENT_BLACKLIST = ['test-image', 'shadow-toggle', 'image-selector']
-
-  function  generateImage() {
-    const previewContainer = document.querySelector('#neon-preview')
-    html2canvas(previewContainer, {
-      logging: true,
-      useCORS: true,
-      ignoreElements: element => {
-        if (ELEMENT_BLACKLIST.some(blacklist => blacklist === element.id)) {
-          return true
-        }
-      }
-    }).then(function(canvas) {
-      document.body.appendChild(canvas);
-      const base64Image = canvas.toDataURL("image/jpeg");
-      // console.log(base64Image)
-  });
-  }
-
   return (
     <div
       className={styles.previewModuleContainer}
-      id="neon-preview"
     >
-      <div className={styles.preview}>
+      <div id="neon-preview" className={styles.preview}>
         <div className={styles.toggleContainer}>
-          <button id="test-image" onClick={() => generateImage()} type="button">
-            test image
-          </button>
           <div id="shadow-toggle">
             <Toggle
               defaultChecked={isOn}
