@@ -10,10 +10,6 @@ const WATERPROOF_OPTIONS = [
   { value: 'waterproof', label: 'Vízálló (+12000 Ft)', price: 12000 }
 ]
 
-const WATERPROOF_OPTIONS_EN = [
-  { value: 'indoor', label: 'Indoor (free)', price: 0 },
-  { value: 'waterproof', label: 'Waterproof (+12000 Ft)', price: 12000 }
-]
 const dropdownStyles = {
   valueContainer: provided => ({
     ...provided,
@@ -27,12 +23,30 @@ const dropdownStyles = {
 }
 
 const WaterProof = () => {
+  const { price, setPrice, currency } = useContext(RootContext)
+
+  const currencyKey = Object.keys(currency)[0]
+
+  function formatSum(sum) {
+		let formattedSum
+		if (currentLanguage === 'hu') {
+			formattedSum = `${Number.parseFloat(Number.parseInt(sum, 10) * currency[currencyKey]).toLocaleString()} ${currencySign[currencyKey]}`
+		} else if (currentLanguage === 'en') {
+			formattedSum = `${Number.parseFloat(Number.parseInt(sum, 10) * currency[currencyKey]).toFixed()} ${currencySign[currencyKey]}`
+		}
+
+		return formattedSum
+	}
+
+  const WATERPROOF_OPTIONS_EN = [
+    { value: 'indoor', label: 'Indoor (free)', price: 0 },
+    { value: 'waterproof', label: `Waterproof (+${formatSum(12000)})`, price: formatSum(12000) }
+  ]
   const options = {
     hu: WATERPROOF_OPTIONS,
     en: WATERPROOF_OPTIONS_EN
   }
-  
-  const { price, setPrice } = useContext(RootContext)
+
   const currentLanguage = getLanguage()
   const [selected, setSelected] = useState()
 

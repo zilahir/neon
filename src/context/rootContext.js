@@ -14,5 +14,6 @@ export default createContext({
 	backBoard: 0,
 	setBackBoard: () => {},
 	base64Image: undefined,
-	setBase64Image: () => {}
+	setBase64Image: () => {},
+	currency: {}
 })

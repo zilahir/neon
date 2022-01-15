@@ -3,6 +3,10 @@ import { getLanguage } from "../i18n";
 
 const axiosInstance = axios.create()
 
+const currencyApiIJnstance = axios.create({
+  baseURL: 'https://freecurrencyapi.net/api/v2',   
+})
+
 export const addCustomNeonToBasktet = newNeon => new Promise((resolve, reject) => {
   {
     const data = new FormData();
@@ -30,3 +34,25 @@ export const addCustomNeonToBasktet = newNeon => new Promise((resolve, reject) =
     }
   }
 })
+
+export function convertCurrency() {
+  return new Promise((resolve, reject) => {
+    currencyApiIJnstance.get('latest', {
+      params: {
+        apikey: '0781c160-63e0-11ec-8cfa-63b0029a2b93',
+        base_currency: 'HUF'
+      }
+    }, {
+    }).then((response) => {
+      console.log('response', response);
+      resolve({
+        eur: response.data.data['EUR'],
+      });
+    }).catch((error) => {
+      console.error('neon-error', error)
+      reject({
+        error: true,
+      })
+    })
+  })
+}

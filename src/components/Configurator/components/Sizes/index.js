@@ -8,8 +8,8 @@ import { request, gql } from "graphql-request";
 import rootContext from '../../../../context/rootContext'
 import styles from './Sizes.module.scss'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
-import { t } from '../../../../utils/i18n'
-
+import { t, getLanguage } from '../../../../utils/i18n'
+import { currencySign } from '../../../../utils/i18n/currencies'
 const WIDTH = {
 	s: 9,
 	m: 11,
@@ -36,7 +36,7 @@ function useSizes() {
 }
 
 const Sizes = () => {
-	const { currentSize, setCurrentSize, price: calculatedPrice, activeFont, previewText } = useContext(rootContext)
+	const { currentSize, setCurrentSize, price: calculatedPrice, activeFont, previewText, currency } = useContext(rootContext)
 	const { status, data, error, isFetching } = useSizes();
 
 	const filteredSizes = data && data.length > 0 && data.filter(({ size }) => activeFont.fontType === 'double' ? size !== 's' && size !== 'm' : size )
@@ -45,7 +45,20 @@ const Sizes = () => {
 		size * length
 	)
 
-	const formatSum = sum => `${Number.parseInt(sum).toLocaleString()} Ft`
+	const currencyKey = Object.keys(currency)[0]
+
+	const currentLanguage = getLanguage()
+
+	function formatSum(sum) {
+		let formattedSum
+		if (currentLanguage === 'hu') {
+			formattedSum = `${Number.parseFloat(Number.parseInt(sum, 10) * currency[currencyKey]).toLocaleString()} ${currencySign[currencyKey]}`
+		} else if (currentLanguage === 'en') {
+			formattedSum = `${Number.parseFloat(Number.parseInt(sum, 10) * currency[currencyKey]).toFixed()} ${currencySign[currencyKey]}`
+		}
+
+		return formattedSum
+	}
 
 	const localizedText = (description) => description.replace('magasság', t('meta.height'))
 

@@ -5,6 +5,7 @@ import { addCustomNeonToBasktet } from '../../utils/axios'
 import RootContext from '../../context/rootContext'
 import styles from './Price.module.scss'
 import { t, getLanguage } from '../../utils/i18n'
+import { currencySign } from '../../utils/i18n/currencies'
 
 const ELEMENT_BLACKLIST = ['test-image', 'shadow-toggle', 'image-selector']
 
@@ -16,11 +17,11 @@ const FinalPrice = () => {
     activeColor,
     activeFont,
     backBoard,
-    base64Image,
+    currency,
     setBase64Image
    } = useContext(RootContext)
 
-   async function  generateImage() {
+   async function generateImage() {
     return new Promise((resolve, reject) => {
       const previewContainer = document.querySelector('#neon-preview')
       html2canvas(previewContainer, {
@@ -63,7 +64,20 @@ const FinalPrice = () => {
     })
   }
 
-  const formatSum = sum => sum ? `${Number.parseInt(sum).toLocaleString()} Ft` : '0 Ft'
+  const currencyKey = Object.keys(currency)[0]
+
+	const currentLanguage = getLanguage()
+
+  function formatSum(sum) {
+		let formattedSum
+		if (currentLanguage === 'hu') {
+			formattedSum = `${Number.parseFloat(Number.parseInt(sum, 10) * currency[currencyKey]).toLocaleString()} ${currencySign[currencyKey]}`
+		} else if (currentLanguage === 'en') {
+			formattedSum = `${Number.parseFloat(Number.parseInt(sum, 10) * currency[currencyKey]).toFixed()} ${currencySign[currencyKey]}`
+		}
+
+		return formattedSum
+	}
 
   return (
     price.length > 0 && (

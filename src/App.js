@@ -12,6 +12,7 @@ import styles from './styles/Global.module.scss'
 import { apiRoot } from './utils/graphql/apiEndpoints'
 import { boardOptions } from './components/BoardSelector'
 import { setLanguage } from './utils/i18n';
+import { convertCurrency } from './utils/axios';
 
 const INITIAL_PRICE = 36000
 const S_CHAR_PRICE = 9000
@@ -24,6 +25,10 @@ const INIT_CHAR_PRICE = {
   },
   double: {
   }
+}
+
+const INITIAL_CURRENCY = {
+  huf: 1
 }
 
 function useCharPrices() {
@@ -67,7 +72,8 @@ const App = () => {
   const { status, data: sizes, error, isFetching } = useSizes();
   const { data: charPrices_ } = useCharPrices()
   const [previewText, setPreviewText] = useState('')
-  const [activeColor, setActiveColor] = useState('#000000')
+  const [activeColor, setActiveColor] = useState('#000000')
+  const [currency, setCurrency] = useState(INITIAL_CURRENCY)
   const [backBoard, setBackBoard] = useState(boardOptions[0])
   const [charPrices, setChartPrices] = useState(INIT_CHAR_PRICE)
 
@@ -106,14 +112,19 @@ const App = () => {
 
   const [base64Image, setBase64Image] = useState(undefined)
 
-  useEffect(() => {
+  useEffect(() => {
     const searchString = window.location.search
     const languageRegexp = new RegExp(/.*=(.*)/)
     const languageMatch = searchString.match(languageRegexp)
     if (Array.isArray(languageMatch)) {
       const language = languageMatch[1]
       if (language === 'en') {
-        setLanguage('en')
+        convertCurrency().then((currency) => {
+          console.log('currency:' , currency)
+          setCurrency(currency)
+          setLanguage('en')
+        })
+
       }
     } else {
       setLanguage('hu')
@@ -123,11 +134,13 @@ const App = () => {
   useEffect(() => {
     const textLength = previewText.length
     const selectedFontType = activeFont.fontType
+    console.log('backboard', backBoard)
     if (Array.isArray(sizes) && sizes.length > 0) {
       const calculatedPrices = Object.keys(charPrices[selectedFontType]).map(priceType => ({
         price: sizes.find(({ size }) => size === priceType).price + (textLength * charPrices[selectedFontType][priceType] + backBoard.price),
         size: priceType
       }))
+      console.log('calculatedPrice', calculatedPrices)
       setPrice(calculatedPrices)
     }
   }, [activeFont, currentSize, previewText, sizes, backBoard, charPrices])
@@ -148,7 +161,8 @@ const App = () => {
               setBackBoard,
               backBoard,
               base64Image,
-              setBase64Image
+              setBase64Image,
+              currency
             }}>
               <div className={styles.rootContainer}>
                   <Configurator />
