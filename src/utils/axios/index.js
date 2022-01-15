@@ -21,8 +21,6 @@ export const addCustomNeonToBasktet = newNeon => new Promise((resolve, reject) =
     data.append('language', getLanguage())
     data.append('productImage', newNeon.productImage)
 
-    console.log('newNeon', newNeon.productImage)
-
     const ajaxUrl = window.ajaxUrl
     if (ajaxUrl) {
       axiosInstance.post(ajaxUrl, data).then(({ data }) => {
@@ -44,7 +42,6 @@ export function convertCurrency() {
       }
     }, {
     }).then((response) => {
-      console.log('response', response);
       resolve({
         eur: response.data.data['EUR'],
       });

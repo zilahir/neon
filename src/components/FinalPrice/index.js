@@ -45,7 +45,6 @@ const FinalPrice = () => {
 
   async function placeToBasket() {
     const { image } = await generateImage()
-    console.log(image)
      addCustomNeonToBasktet({
       previewText,
       price: price.find(p => p.size === currentSize.size),

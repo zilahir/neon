@@ -120,7 +120,6 @@ const App = () => {
       const language = languageMatch[1]
       if (language === 'en') {
         convertCurrency().then((currency) => {
-          console.log('currency:' , currency)
           setCurrency(currency)
           setLanguage('en')
         })
@@ -134,13 +133,11 @@ const App = () => {
   useEffect(() => {
     const textLength = previewText.length
     const selectedFontType = activeFont.fontType
-    console.log('backboard', backBoard)
     if (Array.isArray(sizes) && sizes.length > 0) {
       const calculatedPrices = Object.keys(charPrices[selectedFontType]).map(priceType => ({
         price: sizes.find(({ size }) => size === priceType).price + (textLength * charPrices[selectedFontType][priceType] + backBoard.price),
         size: priceType
       }))
-      console.log('calculatedPrice', calculatedPrices)
       setPrice(calculatedPrices)
     }
   }, [activeFont, currentSize, previewText, sizes, backBoard, charPrices])
