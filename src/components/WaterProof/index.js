@@ -4,6 +4,7 @@ import Select from 'react-select'
 import { getLanguage } from '../../utils/i18n'
 import RootContext from '../../context/rootContext'
 import { useEffect } from 'react'
+import { currencySign } from '../../utils/i18n/currencies'
 
 const WATERPROOF_OPTIONS = [
   { value: 'indoor', label: 'Indoor (ingyenes)', price: 0 },
@@ -26,7 +27,7 @@ const WaterProof = () => {
   const { price, setPrice, currency } = useContext(RootContext)
 
   const currencyKey = Object.keys(currency)[0]
-
+  const currentLanguage = getLanguage()
   function formatSum(sum) {
 		let formattedSum
 		if (currentLanguage === 'hu') {
@@ -40,14 +41,13 @@ const WaterProof = () => {
 
   const WATERPROOF_OPTIONS_EN = [
     { value: 'indoor', label: 'Indoor (free)', price: 0 },
-    { value: 'waterproof', label: `Waterproof (+${formatSum(12000)})`, price: formatSum(12000) }
+    { value: 'waterproof', label: `Waterproof (+${formatSum(12000)})`, price: 12000 }
   ]
   const options = {
     hu: WATERPROOF_OPTIONS,
     en: WATERPROOF_OPTIONS_EN
   }
 
-  const currentLanguage = getLanguage()
   const [selected, setSelected] = useState()
 
   useEffect(() => {
