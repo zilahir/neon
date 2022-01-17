@@ -19,7 +19,7 @@ const ColorSelector = ({
 	isOpen,
 	toggleOpen
 }) => {	
-	const { setActiveColor } = useContext(rootContext);
+	const { setActiveColor, activeColor } = useContext(rootContext);
   const { status, data, error, isFetching } = useColors();
 	function useColors() {
 		return useQuery("colors", async () => {
@@ -60,7 +60,7 @@ const ColorSelector = ({
 			)}>
 				{
 					data && data.map(({ name, color }) => (
-						<button className={styles.colorSelectorBtn} type="button" key={name} onClick={() => setActiveColor(color.hex)}>
+						<button className={classnames(styles.colorSelectorBtn, color.hex === activeColor && styles.selected)} type="button" key={name} onClick={() => setActiveColor(color.hex)}>
 							<WbIncandescentIcon fontSize="large" htmlColor={color.hex} />
 							<span>
 								{name}

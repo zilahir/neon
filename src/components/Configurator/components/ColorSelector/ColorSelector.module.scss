@@ -1,7 +1,5 @@
 @import '../../../../styles/mixins/accordion';
 
-$button-width: 50px;
-
 .colorContainer {
 	display: flex;
 	flex-direction: column;
@@ -28,10 +26,18 @@ $button-width: 50px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		width: $button-width;
-		height: $button-width;
-		padding: 0;
+		padding: 4px;
 		align-items: center;
+		transition: all 0.2s ease-in;
+		border-radius: 5px;
+
+		&.selected {
+			background: #000;
+
+			span {
+				color: #fff;
+			}
+		}
 
 		&:focus {
 			outline: none;
@@ -41,6 +47,12 @@ $button-width: 50px;
 			font-size: 16px;
 			margin-top: 10px;
 			text-transform: capitalize;
+		}
+
+		&:hover {
+			cursor: pointer;
+			background: rgba($color: #444, $alpha: 0.5);
+			transition: all 0.2s ease-in;
 		}
 	}
 
