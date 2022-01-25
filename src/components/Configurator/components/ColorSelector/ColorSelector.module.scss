@@ -20,7 +20,6 @@
 	}
 
 	.colorSelectorBtn {
-		background: none;
 		border: none;
 		margin: 25px 15px;
 		display: flex;
@@ -28,15 +27,24 @@
 		justify-content: center;
 		padding: 4px;
 		align-items: center;
-		transition: all 0.2s ease-in;
 		border-radius: 5px;
+		position: relative;
+		background-color: transparent;
+
+		&:hover {
+			transition: 0.1s ease-in;
+		}
+
+		&:before {
+			width: 25px;
+			height: 25px;
+			top: 0;
+			// transition: 0.1s ease-in;
+			font-size: 35px;
+		}
 
 		&.selected {
-			background: #000;
-
-			span {
-				color: #fff;
-			}
+		
 		}
 
 		&:focus {
@@ -47,12 +55,11 @@
 			font-size: 16px;
 			margin-top: 10px;
 			text-transform: capitalize;
+			color: #000;
 		}
 
 		&:hover {
 			cursor: pointer;
-			background: rgba($color: #444, $alpha: 0.5);
-			transition: all 0.2s ease-in;
 		}
 	}
 

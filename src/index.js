@@ -4,6 +4,7 @@ import { QueryClientProvider } from 'react-query'
 
 import App from './App'
 import { queryClient } from './utils/graphql/apiEndpoints'
+import 'font-awesome/css/font-awesome.min.css';
 
 setTimeout(() => {
 	ReactDOM.render(
