@@ -6,7 +6,7 @@ import RootContext from '../../context/rootContext'
 import styles from './Dimmer.module.scss'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import { currencySign } from '../../utils/i18n/currencies'
-import { getLanguage } from '../../utils/i18n';
+import { getLanguage, t } from '../../utils/i18n';
 
 const muiTheme = createMuiTheme({
   overrides: {
@@ -76,7 +76,7 @@ const Dimmer = () => {
 		<div className={styles.dimmerContainer}>
 			<MuiThemeProvider theme={muiTheme}>
 				<FormControlLabel
-					label={`Dimmer és remote control + ${formatSum(8000)}`}
+					label={`${t('meta.dimmer-and-remote')} + ${formatSum(8000)}`}
 					control={(
 						<Checkbox
 							checked={checked}

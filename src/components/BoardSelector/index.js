@@ -15,9 +15,9 @@ const boardImages = [
 ]
 
 export const boardOptions = [
-  { value: 'Betű körül közvetlenül (+13.000 Ft)', label: 'Betű körül közvetlenul (+13.000 Ft)', price: 13000, index: 0, },
-  { value: 'Téglalap alakú (ingyenes)', label: 'Téglalap alakú (ingyenes)', price: 0, index: 1, },
   { value: 'Felirat körül (ingyenes)', label: 'Felirat körül (ingyenes)', price: 0, index: 2 },
+  { value: 'Téglalap alakú (ingyenes)', label: 'Téglalap alakú (ingyenes)', price: 0, index: 1, },
+  { value: 'Betű körül közvetlenül (+13.000 Ft)', label: 'Betű körül közvetlenul (+13.000 Ft)', price: 13000, index: 0, },
   { value: 'Álló kivitel (+15.000 Ft)', label: 'Álló kivitel (+15.000 Ft)', price: 15000, index: 3, },
   { value: 'Plexi box (+25.000 Ft)', label: 'Plexi box (+25.000 Ft)', price: 25000, index: 4 },
 ]
@@ -59,9 +59,9 @@ const BoardSelector = () => {
 	}
 
   const boardOptionsEn = [
-    { value: `Cut to text (+${formatSum(13000)})`, label: `Cut to text (+${formatSum(13000)})`, price: 13000, index: 0 },
-    { value: 'Rectangle (free)', label: 'Rectangle (free)', price: 0, index: 1 },
     { value: `Cut to shape (free)`, label: `Cut to shape (free)`, price: 0, index: 2, },
+    { value: 'Rectangle (free)', label: 'Rectangle (free)', price: 0, index: 1 },
+    { value: `Cut to text (+${formatSum(13000)})`, label: `Cut to text (+${formatSum(13000)})`, price: 13000, index: 0 },
     { value: `Acrylic stand (+${formatSum(15000)})`, label: `Acrylic stand (+${formatSum(15000)})`, price: 15000, index: 3, },
     { value: `Acrylic box (+${formatSum(25000)})`, label: `Acrylic box (+${formatSum(25000)})`, price: 25000, index: 4 },
   ]

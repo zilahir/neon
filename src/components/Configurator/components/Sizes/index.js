@@ -60,7 +60,7 @@ const Sizes = () => {
 		return formattedSum
 	}
 
-	const localizedText = (description) => description.replace('magasság', t('meta.height'))
+	const localizedText = (description) => description.replace('magasság', `${t('meta.height')}`)
 
 	return (
 		<div className={styles.sizesContainer}>
@@ -90,7 +90,7 @@ const Sizes = () => {
 								<p className={styles.desc}>
 									<span>
 										{
-											previewText.length > 0 && `${t('meta.width')} ${calculateLength(WIDTH[size], previewText.length)} cm`
+											previewText.length > 0 && `${t('meta.width')}: ${calculateLength(WIDTH[size], previewText.length)} cm`
 										}
 									</span>
 									<span>
