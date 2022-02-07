@@ -7,7 +7,7 @@
 	grid-template-columns: 400px 1fr;
 	column-gap: 10px;
 
-	@include smMax {
+	@include lgCustom {
 		display: block;
 	}
 }

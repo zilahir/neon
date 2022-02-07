@@ -29,3 +29,9 @@
         @content;
     }
 }
+
+@mixin lgCustom {
+    @media (max-width: #{$screen-lg-custom}) {
+        @content;
+    }
+}
