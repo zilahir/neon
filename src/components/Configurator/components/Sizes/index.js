@@ -10,6 +10,7 @@ import styles from './Sizes.module.scss'
 import { apiRoot } from '../../../../utils/graphql/apiEndpoints';
 import { t, getLanguage } from '../../../../utils/i18n'
 import { currencySign } from '../../../../utils/i18n/currencies'
+
 const WIDTH = {
 	s: 9,
 	m: 11,
@@ -38,6 +39,7 @@ function useSizes() {
 const Sizes = () => {
 	const { currentSize, setCurrentSize, price: calculatedPrice, activeFont, previewText, currency } = useContext(rootContext)
 	const { status, data, error, isFetching } = useSizes();
+	const currentLanguage = getLanguage()
 
 	const filteredSizes = data && data.length > 0 && data.filter(({ size }) => activeFont.fontType === 'double' ? size !== 's' && size !== 'm' : size )
 
@@ -46,8 +48,8 @@ const Sizes = () => {
 	)
 
 	const currencyKey = Object.keys(currency)[0]
-
-	const currentLanguage = getLanguage()
+	
+	console.log('currentLanguage', currentLanguage)
 
 	function formatSum(sum) {
 		let formattedSum
@@ -87,7 +89,7 @@ const Sizes = () => {
 										formatSum(calculatedPrice.find(price => price.size === size) ? calculatedPrice.find(price => price.size === size).price : 0)
 									}
 								</p>
-								<p className={styles.desc}>
+								<p className={currentLanguage === 'hu' ? styles.hu : styles.en}>
 									<span>
 										{
 											previewText.length > 0 && `${t('meta.width')}: ${calculateLength(WIDTH[size], previewText.length)} cm`

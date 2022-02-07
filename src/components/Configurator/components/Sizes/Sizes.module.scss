@@ -48,12 +48,21 @@
 
         p {
           &.price {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
           }
 
-          &.desc {
+          &.en {
             font-size: 12px;
+
+            span {
+              display: block;
+              text-align: right;
+            }
+          }
+
+          &.hu {
+            font-size: 10px;
 
             span {
               display: block;
